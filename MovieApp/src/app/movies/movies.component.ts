@@ -30,6 +30,9 @@ export class MoviesComponent {
   }
 
   getMovies(): void {
-    this.movies = this.movieService.getMovies();
+    this.movieService.getMovies()
+      .subscribe(movies => {
+        this.movies = movies;
+      });
   }
 }
