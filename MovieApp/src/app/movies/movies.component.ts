@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import { Movies } from '../movie.datasource';
 
 @Component({
   // .movies = <div class="movies"></div>
@@ -9,5 +10,6 @@ import {Component} from '@angular/core';
 })
 
 export class MoviesComponent {
-
+  title = 'Movie List';
+  movies = Movies;
 }
