@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import { Movies } from '../movie.datasource';
 import {Movie} from '../movie';
+import { MovieService } from '../movie.service';
 
 @Component({
   // .movies = <div class="movies"></div>
@@ -12,10 +12,24 @@ import {Movie} from '../movie';
 
 export class MoviesComponent {
   title = 'Movie List';
-  movies = Movies;
+  movies: Movie[];
   selectedMovie: Movie;
+
+  // Movie componentten nesne türetildiğinde costructor ilk olarak çalışır.
+  constructor(private movieService: MovieService) {
+  }
+
+  // Daha sonrasında ise ngOnInıt fonksiyonu çalışır.
+  // tslint:disable-next-line:use-life-cycle-interface
+  ngOnInit(): void {
+    this.getMovies();
+  }
 
   onSelect(movie: Movie): void {
     this.selectedMovie = movie;
+  }
+
+  getMovies(): void {
+    this.movies = this.movieService.getMovies();
   }
 }
