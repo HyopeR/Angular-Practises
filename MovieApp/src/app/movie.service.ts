@@ -4,15 +4,17 @@ import { Movies } from './movie.datasource';
 
 // Asenkron sekilde gelen verileri kontrol etmek için kullanılacak.
 import { Observable, of } from 'rxjs';
+import {LoggingService} from './logging.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MovieService {
 
-  constructor() { }
+  constructor(private loggingService: LoggingService) { }
 
   getMovies(): Observable<Movie[]> {
+    this.loggingService.add('MovieService: listing movies.');
     return of(Movies);
   }
 }
