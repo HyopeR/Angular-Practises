@@ -6,7 +6,7 @@
     <div class="col-9">
       <div class="card-body">
         <h5 class="card-title">
-          <a href="">{{ movie.name }}</a>
+          <a routerLink="/detail/{{ movie.id }}">{{ movie.name }}</a>
         </h5>
         <p class="card-text">
           {{ movie.description }}
@@ -16,6 +16,6 @@
   </div>
 </div>
 
-<div *ngIf="movieLength > 5" class="text-center my-2">
-  <a routerLink="/movies" class="btn btn-primary">More Movies</a>
-</div>
+<!--<div *ngIf="movieLength > 5" class="text-center my-2">-->
+<!--  <a routerLink="/movies" class="btn btn-primary">More Movies</a>-->
+<!--</div>-->

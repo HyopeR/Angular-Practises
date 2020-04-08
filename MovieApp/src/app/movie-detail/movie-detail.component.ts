@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {Movie} from '../movie';
+import {MovieService} from '../movie.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -8,10 +10,22 @@ import {Movie} from '../movie';
   styleUrls: ['./movie-detail.component.css']
 })
 export class MovieDetailComponent implements OnInit {
+  // localhost:4200/detail/:id
   @Input() selectedMovie: Movie;
-  constructor() { }
+
+  constructor(
+    private movieService: MovieService,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
+    this.getMovie();
+  }
+
+  getMovie(): void {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.movieService.getMovie(id)
+      .subscribe(movie => this.selectedMovie = movie);
   }
 
 }
