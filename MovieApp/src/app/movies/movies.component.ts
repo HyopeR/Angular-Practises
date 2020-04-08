@@ -4,7 +4,8 @@ import {Component} from '@angular/core';
   // .movies = <div class="movies"></div>
   // tslint:disable-next-line:component-selector
   selector: 'movies',
-  templateUrl: 'movies.component.html'
+  templateUrl: 'movies.component.html',
+  styleUrls: ['movies.component.css']
 })
 
 export class MoviesComponent {
