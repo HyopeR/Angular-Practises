@@ -5,7 +5,7 @@ import { Movies } from './movie.datasource';
 // Asenkron sekilde gelen verileri kontrol etmek için kullanılacak.
 import { Observable, of } from 'rxjs';
 import {LoggingService} from './logging.service';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -27,5 +27,13 @@ export class MovieService {
   getMovie(id): Observable<Movie> {
     this.loggingService.add('MovieService: get detail by id=' + id);
     return this.http.get <Movie> (this.apiMoviesUrl + '/' + id);
+  }
+
+  update(movie: Movie): Observable<any> {
+    const httpOptions = {
+      header: new HttpHeaders({'Content-Type': 'application/json'})
+    };
+    // @ts-ignore
+    return this.http.put(this.apiMoviesUrl, movie, httpOptions);
   }
 }

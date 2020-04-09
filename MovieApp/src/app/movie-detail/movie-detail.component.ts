@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import {Movie} from '../movie';
 import {MovieService} from '../movie.service';
 import {ActivatedRoute} from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -15,7 +16,8 @@ export class MovieDetailComponent implements OnInit {
 
   constructor(
     private movieService: MovieService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private location: Location
   ) { }
 
   ngOnInit() {
@@ -26,6 +28,14 @@ export class MovieDetailComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
     this.movieService.getMovie(id)
       .subscribe(movie => this.selectedMovie = movie);
+  }
+
+  save(): void {
+    this.movieService.update(this.selectedMovie)
+      .subscribe(() => {
+        // Önceki sayfaya dönmek.
+        this.location.back();
+      });
   }
 
 }
