@@ -12,7 +12,7 @@
       <!--Burdaki işlem önemli, seçilen movieyi dinamik işaretleme.-->
 
       <span class="badge badge-primary">{{movie.id}}</span> {{movie.name}}
-      <span class="close">X</span>
+      <span (click)="delete(movie)" class="close">X</span>
     </li>
   </ul>
 
