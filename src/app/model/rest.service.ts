@@ -10,13 +10,14 @@ export class RestService {
     model.module.ts dosyası içerinde HttpClientModule oluşturuldu.
     Buradaysa constructor içinde kullanım için http'e aktarılıyor.
    */
-  baseUrl: 'http://localhost:3500/';
+  baseUrl: string = 'http://localhost:3500/';
   constructor(private http: HttpClient) { }
 
   /*
     getProducts bir asenkron fonksiyondur. İşlemleri ona göre yapılmalıdır.
   */
   getProducts(): Observable<Product[]> {
+    console.log(this.baseUrl + 'products');
     return this.http.get<Product[]>(this.baseUrl + 'products');
   }
 

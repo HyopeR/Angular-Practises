@@ -6,11 +6,15 @@ import {RestService} from './rest.service';
 export class ProductRepository implements OnInit {
   private products: Product[] = [];
 
-  constructor(private restService: RestService) {  }
-
-  ngOnInit() {
+  constructor(private restService: RestService) {
     this.restService.getProducts()
       .subscribe(products => this.products = products);
+  }
+
+  ngOnInit() {  }
+
+  getProducts(): Product[] {
+    return this.products;
   }
 
   getProduct(id: number): Product {
