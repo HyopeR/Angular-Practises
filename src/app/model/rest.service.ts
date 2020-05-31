@@ -4,9 +4,7 @@ import {Observable} from 'rxjs';
 import {Product} from './product.model';
 import {Category} from './category.model';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class RestService {
   /*
     model.module.ts dosyası içerinde HttpClientModule oluşturuldu.
