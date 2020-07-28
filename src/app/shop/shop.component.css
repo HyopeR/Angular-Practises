@@ -1,0 +1,8 @@
+.pt-100 {
+  padding-top: 100px;
+}
+
+.product-image {
+  max-width: 250px;
+  max-height: 250px;
+}
