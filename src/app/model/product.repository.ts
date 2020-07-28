@@ -7,7 +7,8 @@ export class ProductRepository implements OnInit {
   private products: Product[] = [];
 
   constructor(private restService: RestService) {
-    this.restService.getProducts()
+    this.restService
+      .getProducts()
       .subscribe(products => this.products = products);
   }
 

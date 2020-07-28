@@ -6,6 +6,10 @@ import {RestService} from './rest.service';
 export class CategoryRepository implements OnInit {
   private categories: Category[] = [];
 
+  /*
+    Component oluşmadan önce içeriklerin çekilmesi için
+    asenkron veri çekme işlemleri constructorlar içinde yazılır.
+   */
   constructor(private restService: RestService) {
     this.restService.getCategories()
       .subscribe(categories => this.categories = categories);
