@@ -7,7 +7,12 @@ import {Category} from '../model/category.model';
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'shop',
-  templateUrl: 'shop.component.html'
+  templateUrl: 'shop.component.html',
+  styles: [
+    `
+    .pt-100 {padding-top: 100px;}
+    `
+  ]
 })
 
 export class ShopComponent {
