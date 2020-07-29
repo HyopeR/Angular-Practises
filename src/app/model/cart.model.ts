@@ -1,6 +1,11 @@
 import {Product} from './product.model';
 import {Injectable} from '@angular/core';
 
+/*
+  Servis olarak kullanılacak model dosyalarını inject edilmelidir.
+  İlgili `model.module.ts` içerisindeki providers kısmına eklenmelidir.
+ */
+
 @Injectable()
 export class Cart {
   public items: CartItem[] = [];

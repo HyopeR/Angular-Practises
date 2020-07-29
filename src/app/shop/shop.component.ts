@@ -3,6 +3,7 @@ import {ProductRepository} from '../model/product.repository';
 import {CategoryRepository} from '../model/category.repository';
 import {Product} from '../model/product.model';
 import {Category} from '../model/category.model';
+import {Cart} from '../model/cart.model';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -17,8 +18,9 @@ export class ShopComponent {
   public selectedPage = 1;
 
   constructor(
-    private productRepository: ProductRepository,
-    private categoryRepository: CategoryRepository
+      private productRepository: ProductRepository,
+      private categoryRepository: CategoryRepository,
+      private cart: Cart
     ) {}
 
     get products(): Product[] {
@@ -48,5 +50,9 @@ export class ShopComponent {
       ))
         .fill(0)
         .map((element, index) => index + 1);
+    }
+
+    addProductToCard(product: Product) {
+      this.cart.addItem(product);
     }
 }
