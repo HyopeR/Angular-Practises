@@ -17,6 +17,7 @@ export class ShopComponent {
   public selectedCategory: Category = null;
   public productsPerPage = 3;
   public selectedPage = 1;
+  public findedProducts = 0;
 
   constructor(
       private productRepository: ProductRepository,
@@ -27,9 +28,11 @@ export class ShopComponent {
 
     get products(): Product[] {
       let index = (this.selectedPage - 1) * this.productsPerPage;
-      return this.productRepository
-        .getProducts(this.selectedCategory)
-        .slice(index, index + this.productsPerPage);
+      let findedProducts = this.productRepository
+        .getProducts(this.selectedCategory);
+
+      this.findedProducts = findedProducts.length;
+      return findedProducts.slice(index, index + this.productsPerPage);
     }
 
     get categories(): Category[] {
