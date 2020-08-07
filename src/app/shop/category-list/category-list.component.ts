@@ -12,7 +12,10 @@ export class CategoryListComponent implements OnInit {
 
   public selectedCategory: Category = null;
 
-  // outSendObject = { selectedCategory, selectedPage }
+  /*
+    Alt componentten, üst componente bir değer bilgisi göndermek
+    için output kullanımı.
+   */
   @Output() category = new EventEmitter<Category>();
 
   constructor(

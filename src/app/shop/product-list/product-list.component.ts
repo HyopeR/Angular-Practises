@@ -19,6 +19,9 @@ export class ProductListComponent implements OnInit {
     shop.component.html içindeki product-list etikenin yanında
     [products]="products" olarak değişken bu componente atanıyor.
    */
+
+  selectedProduct: Product = null;
+
   constructor(
     private cart: Cart,
     private router: Router
@@ -30,6 +33,14 @@ export class ProductListComponent implements OnInit {
     this.cart.addItem(product);
     // Sepete ürün eklendiğinde sepet detaylarına gitmesi için.
     // this.router.navigateByUrl('/cart');
+  }
+
+  displayDetails(product: Product) {
+    this.selectedProduct = product;
+  }
+
+  hideDetails() {
+    this.selectedProduct = null;
   }
 
 }
