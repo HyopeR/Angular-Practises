@@ -24,7 +24,19 @@
     <div class="col-9">
       <div class="col-md-12">
         <div class="alert alert-primary">
-          {{ findedProducts }} tane ürün bulundu.
+          <div class="form-inline float-right m-0 p-0">
+            <select class="form-control-sm"
+              [value]="productsPerPage"
+              (change)="changePageSize($event.target.value)"
+            >
+              <option value="2">2 Tane</option>
+              <option value="3">3 Tane</option>
+              <option value="4">4 Tane</option>
+              <option value="5">5 Tane</option>
+              <option value="6">6 Tane</option>
+            </select>
+          </div>
+          {{ selectedProducts.length }} tane ürün bulundu.
         </div>
       </div>
       <div class="row">
