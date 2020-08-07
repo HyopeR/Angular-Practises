@@ -8,6 +8,8 @@ import { CartSummaryComponent } from './cart-summary/cart-summary.component';
 import { CartDetailComponent } from './cart-detail/cart-detail.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import {RouterModule} from '@angular/router';
+import { ProductListComponent } from './product-list/product-list.component';
+import { CategoryListComponent } from './category-list/category-list.component';
 
 @NgModule({
   /*
@@ -20,7 +22,7 @@ import {RouterModule} from '@angular/router';
     Export ile ShopComponentini dışarı gönderiyoruz.
    */
   imports: [ModelModule, BrowserModule, FormsModule, RouterModule],
-  declarations: [ShopComponent, NavbarComponent, CartSummaryComponent, CartDetailComponent, CheckoutComponent],
+  declarations: [ShopComponent, NavbarComponent, CartSummaryComponent, CartDetailComponent, CheckoutComponent, ProductListComponent, CategoryListComponent],
   exports: [ShopComponent, CartDetailComponent, CheckoutComponent]
 })
 export class ShopModule {}

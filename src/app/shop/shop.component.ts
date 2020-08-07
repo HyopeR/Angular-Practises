@@ -20,10 +20,7 @@ export class ShopComponent {
   public selectedProducts: Product[] = [];
 
   constructor(
-      private productRepository: ProductRepository,
-      private categoryRepository: CategoryRepository,
-      private cart: Cart,
-      private router: Router
+      private productRepository: ProductRepository
     ) {}
 
     get products(): Product[] {
@@ -34,19 +31,15 @@ export class ShopComponent {
       return this.selectedProducts.slice(index, index + this.productsPerPage);
     }
 
+    getCategory(category: Category) {
+      this.selectedCategory = category;
+      this.selectedPage = 1;
+    }
+
     changePageSize(size: string) {
       // tslint:disable-next-line:radix
       this.productsPerPage = parseInt(size);
       this.changePage(1);
-    }
-
-    get categories(): Category[] {
-      return this.categoryRepository.getCategories();
-    }
-
-    changeCategory(newCategory?: Category) {
-      this.selectedPage = 1;
-      this.selectedCategory = newCategory;
     }
 
     changePage(pageNumber: number) {
@@ -60,11 +53,5 @@ export class ShopComponent {
       ))
         .fill(0)
         .map((element, index) => index + 1);
-    }
-
-    addProductToCard(product: Product) {
-      this.cart.addItem(product);
-      // Sepete ürün eklendiğinde sepet detaylarına gitmesi için.
-      // this.router.navigateByUrl('/cart');
     }
 }

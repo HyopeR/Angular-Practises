@@ -6,20 +6,9 @@
 
       <cart-summary></cart-summary>
 
-      <div class="list-group">
-        <a (click)="changeCategory()"
-           role="button"
-           class="list-group-item list-group-item-action">
-          Tüm Kategoriler
-        </a>
-        <a *ngFor="let c of categories"
-          (click)="changeCategory(c)"
-          class="list-group-item list-group-item-action"
-          role="button"
-          [class.active]="c==selectedCategory">
-          {{ c.name}}
-        </a>
-      </div>
+      <!-- Category List -->
+      <category-list (category)="getCategory($event)"></category-list>
+
     </div>
     <div class="col-9">
       <div class="col-md-12">
@@ -39,33 +28,8 @@
           {{ selectedProducts.length }} tane ürün bulundu.
         </div>
       </div>
-      <div class="row">
-        <ng-container *ngFor="let p of products">
-          <div class="col-md-4">
-            <div class="card mb-3">
-              <img class="product-image" src="/assets/img/{{ p.imageUrl }}" alt="{{ p.name }}">
-              <div class="card-body">
-                <h4 class="cart-title">
-                  <a href="">
-                    {{ p.name }}
-                  </a>
-                </h4>
-                <small class="text-muted">
-                  <i class="fas fa-lira-sign"></i> {{ p.price }}
-                </small>
-              </div>
-              <div class="card-footer text-center">
-                <button class="btn btn-outline-primary btn-sm">Details</button>
-                <button
-                  (click)="addProductToCard(p)"
-                  class="btn btn-outline-primary btn-sm ml-3"
-                >Add To Card</button>
-              </div>
-            </div>
-          </div>
-        </ng-container>
-      </div>
 
+      <product-list [products]="products"></product-list>
       <div class="row mt-3">
         <div class="col">
           <div class="btn-group">
