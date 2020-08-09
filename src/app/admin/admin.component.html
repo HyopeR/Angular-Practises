@@ -8,17 +8,37 @@
   <div class="row mt-3">
 
     <div class="col-md-3">
-      <button routerLink="/shop" class="btn btn-outline-info btn-block">
-        Shop
-      </button>
+      <button
+        routerLink="/shop"
+        class="btn btn-outline-secondary btn-block"
+      >Shop</button>
 
-      <button (click)="logout()" class="btn btn-outline-danger btn-block">
-        Logout
-      </button>
+      <button
+        routerLinkActive="active"
+        routerLink="/admin/main/products"
+        class="btn btn-outline-info btn-block"
+      >Products</button>
+
+      <button
+        routerLinkActive="active"
+        routerLink="/admin/main/categories"
+        class="btn btn-outline-info btn-block"
+      >Categories</button>
+
+      <button
+        routerLinkActive="active"
+        routerLink="/admin/main/orders"
+        class="btn btn-outline-info btn-block"
+      >Orders</button>
+
+      <button
+        (click)="logout()"
+        class="btn btn-outline-danger btn-block"
+      >Logout</button>
     </div>
 
     <div class="col-md-9">
-
+      <router-outlet></router-outlet>
     </div>
 
   </div>
