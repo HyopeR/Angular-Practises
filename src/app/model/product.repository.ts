@@ -40,4 +40,12 @@ export class ProductRepository implements OnInit {
         });
     }
   }
+
+  deleteProduct(product: Product) {
+    this.restService.deleteProduct(product)
+      .subscribe(p => this.products.splice(
+        // tslint:disable-next-line:no-shadowed-variable
+        this.products.findIndex(p => p.id == product.id), 1));
+  }
+
 }
