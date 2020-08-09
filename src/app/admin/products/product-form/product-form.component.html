@@ -23,6 +23,19 @@
     <textarea class="form-control" name="description" [(ngModel)]="product.description"></textarea>
   </div>
 
+  <div class="form-group">
+    <label>Category</label>
+    <select class="custom-select custom-select-sm"
+      [value]="product.category"
+      (change)="changeCategory($event.target.value)"
+     >
+      <option
+        *ngFor="let c of getCategories()"
+        value="{{c.name}}"
+      >{{ c.name }}</option>
+    </select>
+  </div>
+
   <button type="submit" class="btn btn-primary">
     {{ editing ? 'Edit' : 'Create' }} Product
   </button>

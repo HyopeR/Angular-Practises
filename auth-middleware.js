@@ -16,18 +16,18 @@ module.exports = (req, res, next) => {
     res.end();
     return;
   } else {
-    if ( (req.url.startsWith('/products') || req.url.startsWith('/categories')) && (req.method !== 'GET') ) {
-      let token = req.header['authorization'];
+    if ((req.url.startsWith("/products") || req.url.startsWith("/categories")) && (req.method != 'GET')) {
+      let token = req.headers['authorization'];
 
-      if (token !== null && token.startsWith('Bearer<')){
-        token = token.substring(7, token.length);
+      if (token != null) {
+        // down function Bearer<TOKEN> -> TOKEN
+        token = token.substring(7, token.length-1);
         try {
           jwt.verify(token, app_secret);
           next();
           return;
-        } catch (err) {
-          console.log(err)
         }
+        catch (err) { }
       }
       res.statusCode = 401;
       res.end();
