@@ -16,7 +16,7 @@ export class ProductRepository implements OnInit {
   ngOnInit() {  }
 
   getProducts(category: Category = null): Product[] {
-    if(category) {
+    if (category) {
       return this.products.filter(p => p.category === category.name);
     } else {
       return this.products;
@@ -24,6 +24,6 @@ export class ProductRepository implements OnInit {
   }
 
   getProduct(id: number): Product {
-    return this.products.find(product => product.id === id);
+    return this.products.find(product => product.id == id);
   }
 }
