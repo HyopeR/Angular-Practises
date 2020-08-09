@@ -13,7 +13,7 @@ export class AuthService {
   }
 
   get authenticated(): boolean {
-    return this.restService.token !== null;
+    return this.restService.token != null;
   }
 
   clear() {
