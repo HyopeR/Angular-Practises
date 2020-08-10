@@ -25,26 +25,6 @@ export class RestService {
     return this.http.get<Product[]>(this.baseUrl + 'products');
   }
 
-  getCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>(this.baseUrl + 'categories');
-  }
-
-  saveOrder(order: Order): Observable<Order> {
-    return this.http.post<Order>(this.baseUrl + 'orders', order);
-  }
-
-  authentication(username: string, password: string): Observable<boolean> {
-    // @ts-ignore
-    return this.http.post<any>(this.baseUrl + 'login', {
-        username,
-        password
-    }).pipe(map(response => {
-      this.token = response.success ? response.token : null;
-      console.log(this.token);
-      return response.success;
-    }));
-  }
-
   addProduct(product: Product): Observable<Product> {
     return this.http.post<Product>(this.baseUrl + 'products', product, {
       headers: new HttpHeaders({
@@ -67,6 +47,50 @@ export class RestService {
         'Authorization': `Bearer<${this.token}>`
       })
     });
+  }
+
+  getCategories(): Observable<Category[]> {
+    return this.http.get<Category[]>(this.baseUrl + 'categories');
+  }
+
+  addCategory(category: Category): Observable<Category> {
+    return this.http.post<Category>(this.baseUrl + 'categories', category, {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer<${this.token}>`
+      })
+    });
+  }
+
+  updateCategory(category: Category): Observable<Category> {
+    return this.http.put<Category>(this.baseUrl + 'categories/' + category.id, category, {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer<${this.token}>`
+      })
+    });
+  }
+
+  deleteCategory(category: Category): Observable<Category> {
+    return this.http.delete<Category>(this.baseUrl + 'categories/' + category.id, {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer<${this.token}>`
+      })
+    });
+  }
+
+  saveOrder(order: Order): Observable<Order> {
+    return this.http.post<Order>(this.baseUrl + 'orders', order);
+  }
+
+  authentication(username: string, password: string): Observable<boolean> {
+    // @ts-ignore
+    return this.http.post<any>(this.baseUrl + 'login', {
+        username,
+        password
+    }).pipe(map(response => {
+      this.token = response.success ? response.token : null;
+      console.log(this.token);
+      return response.success;
+    }));
   }
 
 }

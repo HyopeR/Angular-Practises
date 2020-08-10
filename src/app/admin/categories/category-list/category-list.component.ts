@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {CategoryRepository} from '../../../model/category.repository';
+import {Category} from '../../../model/category.model';
 
 @Component({
   selector: 'app-category-list',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoryListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private categoryRepository: CategoryRepository) { }
 
-  ngOnInit() {
+  ngOnInit() { }
+
+  getCategories(): Category[] {
+    return this.categoryRepository.getCategories();
+  }
+
+  deleteCategory(category: Category) {
+    this.categoryRepository.deleteCategory(category);
   }
 
 }
