@@ -1,0 +1,28 @@
+<div
+  [class.loading]="loading$ | async"
+  *ngIf="!(error$ | async)">
+
+  <ul class="list-group" *ngIf="bookItems | async">
+    <li class="list-group-item"
+        *ngFor="let book of bookItems | async"
+    >
+      <div class="row">
+        <div class="col-11" (click)="clickBook(book)" type="button">
+            <b>
+              {{ book.name }}
+            </b>
+        </div>
+
+        <div class="col-1 text-center" (click)="deleteBook(book.id)" type="button">
+          <i class="fa fa-trash"></i>
+        </div>
+
+      </div>
+
+      <div *ngIf="selected | async">
+        <book-detail *ngIf="book.id === selectedBook['id']" [book] = book></book-detail>
+      </div>
+    </li>
+
+  </ul>
+</div>

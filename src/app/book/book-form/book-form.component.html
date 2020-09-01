@@ -1,0 +1,23 @@
+<div class="form-group">
+  <label>Book Name: </label>
+  <input class="form-control" [(ngModel)]="newBook.name">
+
+  <label>Price: </label>
+  <input class="form-control" [(ngModel)]="newBook.price">
+
+  <label>Description: </label>
+  <input class="form-control" [(ngModel)]="newBook.description">
+
+  <label>Author: </label>
+  <select [class.loading]="loading$ | async"
+          *ngIf="!(error$ | async)"
+          class="form-control"
+          [(ngModel)]="newBook.authorId"
+  >
+    <option *ngFor="let author of authors | async" [ngValue]="author.id">
+      {{ author.name }} {{ author.surname }}
+    </option>
+  </select>
+
+</div>
+<button class="btn btn-primary w-25" (click)="addBook()">Add Book</button>
