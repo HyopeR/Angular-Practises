@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 
 import {Book} from '../store/models/book.model';
 import {Author} from '../store/models/author.model';
+import {delay} from 'rxjs/operators';
 
 @Injectable()
 export class RestService {
@@ -15,7 +16,10 @@ export class RestService {
 
   // Books
   getBooks() {
-    return this.http.get<Book[]>(this.BASE_URL + 'books');
+    return this.http.get<Book[]>(this.BASE_URL + 'books')
+      // .pipe(
+      //   delay(2000)
+      // );
   }
 
   addBook(book: Book) {
@@ -28,7 +32,10 @@ export class RestService {
 
   // Books
   getAuthors() {
-    return this.http.get<Author[]>(this.BASE_URL + 'authors');
+    return this.http.get<Author[]>(this.BASE_URL + 'authors')
+      // .pipe(
+      //   delay(2000)
+      // );
   }
 
 

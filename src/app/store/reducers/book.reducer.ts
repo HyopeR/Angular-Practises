@@ -86,7 +86,7 @@ export function BookReducer(
     case BookActionTypes.SELECT_BOOK:
       return {
         ...state,
-        selectedBook: action.payload,
+        selectedBook: state.list.find(book => book.id === action.payload),
         selected: false
       };
 
@@ -108,7 +108,6 @@ export function BookReducer(
         ...state,
         selected: false
       };
-
 
     default:
       return state;

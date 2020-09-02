@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {Observable} from 'rxjs';
-import {Book} from '../../store/models/book.model';
+import {isEmpty} from 'lodash';
 import {Store} from '@ngrx/store';
 import {AppState} from '../../store/models/app-state.model';
-import {DeleteBookAction, DeselectBookAction, GetBooksAction, SelectBookAction} from '../../store/actions/book.actions';
-import {GetAuthorsAction} from '../../store/actions/author.actions';
+import {DeleteBookAction, DeselectBookAction, SelectBookAction} from '../../store/actions/book.actions';
+
+import {Book} from '../../store/models/book.model';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -14,24 +15,19 @@ import {GetAuthorsAction} from '../../store/actions/author.actions';
 })
 export class BookListComponent implements OnInit {
 
-  bookItems: Observable<Array<Book>>;
-  $bookLoading: Observable<boolean>;
-  $bookError: Observable<Error>;
-
-  selectedBook: Book;
-  selected: Observable<boolean>;
+  bookItems$: Observable<Array<Book>>;
+  error$: Observable<Error>;
+  loading$: Observable<boolean>;
+  selectedBook$: Observable<Book>;
+  currentBookId: string = '';
 
   constructor(private store: Store<AppState>) {  }
 
   ngOnInit(): void {
-    this.bookItems = this.store.select(store => store.books.list);
-    this.$bookLoading = this.store.select(store => store.books.loading);
-    this.$bookError = this.store.select(store => store.books.error);
-
-    this.store.select(store => store.books.selectedBook).subscribe(book => {
-      this.selectedBook = book;
-    });
-    this.selected = this.store.select(store => store.books.selected);
+    this.bookItems$ = this.store.select(store => store.books.list);
+    this.error$ = this.store.select(store => store.books.error);
+    this.loading$ = this.store.select(store => store.books.loading);
+    this.selectedBook$ = this.store.select(store => store.books.selectedBook);
   }
 
   deleteBook(id) {
@@ -39,11 +35,12 @@ export class BookListComponent implements OnInit {
   }
 
   clickBook(book: Book) {
-    console.log(this.selectedBook);
-    if (book.id !== this.selectedBook.id) {
-      this.store.dispatch(new SelectBookAction(book));
+    if (this.currentBookId !== book.id) {
+      this.store.dispatch(new SelectBookAction(book.id));
+      this.currentBookId = book.id;
     } else {
       this.store.dispatch(new DeselectBookAction({}));
+      this.currentBookId = '';
     }
   }
 

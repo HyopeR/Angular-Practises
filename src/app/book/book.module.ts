@@ -8,6 +8,7 @@ import {BookComponent} from './book.component';
 import { BookFormComponent } from './book-form/book-form.component';
 import { BookListComponent } from './book-list/book-list.component';
 import { BookDetailComponent } from './book-detail/book-detail.component';
+import {DesignModule} from '../design/design.module';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { BookDetailComponent } from './book-detail/book-detail.component';
     BrowserModule,
     FormsModule,
     RouterModule,
+    DesignModule,
     RouterModule.forRoot([
       {path: 'book', component: BookComponent
         // ,

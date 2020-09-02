@@ -18,18 +18,17 @@ import {Author} from '../../store/models/author.model';
 })
 export class BookFormComponent implements OnInit {
 
-  authors: Observable<Array<Author>>;
-  loading$: Observable<boolean>;
+  authors$: Observable<Array<Author>>;
   error$: Observable<Error>;
-
+  loading$: Observable<boolean>;
   newBook: Book = { id: '', name: '', price: 0, description: '', authorId: ''};
 
   constructor(private store: Store<AppState>) {  }
 
   ngOnInit(): void {
-    this.authors = this.store.select(store => store.authors.list);
-    this.loading$ = this.store.select(store => store.authors.loading);
+    this.authors$ = this.store.select(store => store.authors.list);
     this.error$ = this.store.select(store => store.authors.error);
+    this.loading$ = this.store.select(store => store.authors.loading);
   }
 
   addBook() {

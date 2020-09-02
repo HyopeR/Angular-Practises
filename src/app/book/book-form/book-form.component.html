@@ -1,4 +1,7 @@
-<div class="form-group">
+<error-alert *ngIf="error$ | async as error" [error]="error"></error-alert>
+<loading-spinner *ngIf="loading$ | async as loading"></loading-spinner>
+
+<div class="form-group" *ngIf="!(error$ | async) && !(loading$ | async)">
   <label class="mt-2">Book Name: </label>
   <input class="form-control" [(ngModel)]="newBook.name">
 
@@ -9,11 +12,11 @@
   <input class="form-control" [(ngModel)]="newBook.description">
 
   <label class="mt-2">Author: </label>
-  <select *ngIf="!(error$ | async)"
+  <select *ngIf="authors$ | async as authors"
           class="form-control"
           [(ngModel)]="newBook.authorId"
   >
-    <option *ngFor="let author of authors | async" [ngValue]="author.id">
+    <option *ngFor="let author of authors" [ngValue]="author.id">
       {{ author.name }} {{ author.surname }}
     </option>
   </select>

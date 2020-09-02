@@ -14,13 +14,13 @@ import {Observable} from 'rxjs';
 })
 export class BookDetailComponent implements OnInit {
 
-  $selectedAuthor: Observable<Author>;
+  selectedAuthor$: Observable<Author>;
   @Input() book: Book;
 
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.$selectedAuthor = this.store.select(store => store.authors.selectedAuthor);
+    this.selectedAuthor$ = this.store.select(store => store.authors.selectedAuthor);
     this.store.dispatch(new SelectAuthorAction(this.book.authorId));
   }
 

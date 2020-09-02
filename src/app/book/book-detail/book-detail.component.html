@@ -3,6 +3,6 @@
   <div class="p-2">
     <span>Price: {{ book.price }}</span><br>
     <span>Description: {{ book.description }}</span><br>
-    <span *ngIf="$selectedAuthor | async as selectedAuthor">Author: {{ selectedAuthor.name }} {{ selectedAuthor.surname }}</span>
+    <span *ngIf="selectedAuthor$ | async as selectedAuthor">Author: {{ selectedAuthor.name }} {{ selectedAuthor.surname }}</span>
   </div>
 </div>

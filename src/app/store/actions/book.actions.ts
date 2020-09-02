@@ -72,25 +72,25 @@ export class DeleteBookFailureAction implements Action {
 export class SelectBookAction implements Action {
   readonly type = BookActionTypes.SELECT_BOOK;
 
-  constructor(public payload: Book) {}
+  constructor(public payload: string) {}
 }
 
 export class SelectedBookAction implements Action {
   readonly type = BookActionTypes.SELECTED_BOOK;
 
-  constructor(public payload: true) {}
+  constructor(public payload: boolean) {}
 }
 
 export class DeselectBookAction implements Action {
   readonly type = BookActionTypes.DESELECT_BOOK;
 
-  constructor(public payload: {}) { }
+  constructor(public payload: object) { }
 }
 
 export class DeselectedBookAction implements Action {
   readonly type = BookActionTypes.DESELECTED_BOOK;
 
-  constructor(public payload: false) { }
+  constructor(public payload: boolean) { }
 }
 
 export type BookActions =

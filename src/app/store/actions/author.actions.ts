@@ -34,7 +34,7 @@ export class SelectAuthorAction implements Action {
 export class SelectedAuthorAction implements Action {
   readonly type = AuthorActionTypes.SELECTED_AUTHOR;
 
-  constructor(public payload: true) {}
+  constructor(public payload: boolean) {}
 }
 
 export type AuthorActions =
