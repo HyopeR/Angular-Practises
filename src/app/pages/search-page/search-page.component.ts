@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -8,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchPageComponent implements OnInit {
 
-  constructor() { }
+  mode: string;
+
+  constructor(
+    private activatedRoute: ActivatedRoute
+  ) {
+    this.mode = this.activatedRoute.snapshot.params.mode === 'book' ? 'book' : 'author';
+  }
 
   ngOnInit() {
+    console.log(this.activatedRoute);
   }
 
 }

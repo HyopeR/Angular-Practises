@@ -9,8 +9,6 @@ import { BookFormComponent } from './book-form/book-form.component';
 import { BookListComponent } from './book-list/book-list.component';
 import { BookDetailComponent } from './book-detail/book-detail.component';
 
-import {SearchPageComponent} from '../pages/search-page/search-page.component';
-
 
 @NgModule({
   /*
@@ -22,10 +20,10 @@ import {SearchPageComponent} from '../pages/search-page/search-page.component';
     FormsModule,
     RouterModule,
     RouterModule.forRoot([
-      {path: 'book', component: BookComponent,
-        children: [
-          {path: 'search/:mode/:id', component: SearchPageComponent},
-        ]},
+      {path: 'book', component: BookComponent
+        // ,
+        // children: [{path: 'search/:mode/:searchText', component: SearchPageComponent}]
+      },
     ])
   ],
   declarations: [BookComponent, BookFormComponent, BookListComponent, BookDetailComponent],

@@ -21,7 +21,7 @@ export function AuthorReducer(
   state: AuthorState = initialState,
   action: AuthorActions
 ) {
-  console.log(action);
+  // console.log(action);
   switch (action.type) {
     case AuthorActionTypes.GET_AUTHORS:
       return {

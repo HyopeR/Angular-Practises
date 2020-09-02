@@ -6,9 +6,6 @@ import {RouterModule} from '@angular/router';
 
 import {AuthorComponent} from './author.component';
 
-import {SearchPageComponent} from '../pages/search-page/search-page.component';
-
-
 @NgModule({
   /*
     Export ile AuthorComponenti dışarı gönderiyoruz.
@@ -19,10 +16,10 @@ import {SearchPageComponent} from '../pages/search-page/search-page.component';
     FormsModule,
     RouterModule,
     RouterModule.forRoot([
-      {path: 'author', component: AuthorComponent,
-        children: [
-          {path: 'search/:mode/:id', component: SearchPageComponent},
-        ]},
+      {path: 'author', component: AuthorComponent
+        // ,
+        // children: [{path: 'search/:mode/:searchText', component: SearchPageComponent}]
+      },
     ])
   ],
   declarations: [AuthorComponent],
