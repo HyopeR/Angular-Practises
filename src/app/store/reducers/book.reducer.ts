@@ -1,5 +1,6 @@
 import {BookActions, BookActionTypes} from '../actions/book.actions';
 import {Book} from '../models/book.model';
+import {Search} from '../models/search.model';
 
 export interface BookState {
   list: Book[];
@@ -7,6 +8,7 @@ export interface BookState {
   selected: boolean;
   loading: boolean;
   error: Error;
+  search: Search;
 }
 
 const initialState: BookState = {
@@ -14,14 +16,19 @@ const initialState: BookState = {
   selectedBook: {},
   selected: false,
   loading: false,
-  error: undefined
+  error: undefined,
+  search: {
+    list: [],
+    searching: false,
+    error: undefined,
+  }
 };
 
 export function BookReducer(
   state: BookState = initialState,
   action: BookActions
 ) {
-
+  // console.log(action, state);
   switch (action.type) {
     case BookActionTypes.GET_BOOKS:
       return {
@@ -107,6 +114,35 @@ export function BookReducer(
       return {
         ...state,
         selected: false
+      };
+
+    case BookActionTypes.SEARCH_BOOK:
+      return {
+        ...state,
+        search: {
+          ...state.search,
+          searching: true
+        }
+      };
+
+    case BookActionTypes.SEARCH_BOOK_SUCCESS:
+      return {
+        ...state,
+        search: {
+          ...state.search,
+          searching: false,
+          list: state.list.filter(author => author.name === action.payload)
+        }
+      };
+
+    case BookActionTypes.SEARCH_BOOK_FAILURE:
+      return {
+        ...state,
+        search: {
+          ...state.search,
+          searching: false,
+          error: action.payload
+        }
       };
 
     default:

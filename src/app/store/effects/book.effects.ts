@@ -15,8 +15,15 @@ import {
   DeleteBookSuccessAction,
   GetBooksAction,
   GetBooksFailureAction,
-  GetBooksSuccessAction, SelectBookAction, SelectedBookAction, DeselectBookAction, DeselectedBookAction
+  GetBooksSuccessAction,
+  SelectBookAction,
+  SelectedBookAction,
+  DeselectBookAction,
+  DeselectedBookAction,
+  SearchBookAction,
+  SearchBookFailureAction, SearchBookSuccessAction
 } from '../actions/book.actions';
+import {SearchAuthorSuccessAction} from '../actions/author.actions';
 
 @Injectable()
 export class BookEffects {
@@ -74,6 +81,18 @@ export class BookEffects {
         (data) => of(data.payload)
           .pipe(
             map(() => new DeselectedBookAction(false))
+          )
+      )
+    );
+
+  @Effect() searchBook = this.actions
+    .pipe(
+      ofType<SearchBookAction>(BookActionTypes.SEARCH_BOOK),
+      mergeMap(
+        (data) => of(data.payload)
+          .pipe(
+            map(() => new SearchBookSuccessAction(data.payload)),
+            catchError( error => of(new SearchBookFailureAction(error)))
           )
       )
     );

@@ -14,7 +14,10 @@ export enum BookActionTypes {
   SELECT_BOOK = '[BOOK] Select Book',
   SELECTED_BOOK = '[BOOK] Selected Book',
   DESELECT_BOOK = '[BOOK] Deselect Book',
-  DESELECTED_BOOK = '[BOOK] Deselected Book'
+  DESELECTED_BOOK = '[BOOK] Deselected Book',
+  SEARCH_BOOK = '[BOOK] Search Book',
+  SEARCH_BOOK_SUCCESS = '[BOOK] Search Book Success',
+  SEARCH_BOOK_FAILURE = '[BOOK] Search Book Failure'
 }
 
 export class GetBooksAction implements Action {
@@ -93,6 +96,24 @@ export class DeselectedBookAction implements Action {
   constructor(public payload: boolean) { }
 }
 
+export class SearchBookAction implements Action {
+  readonly type = BookActionTypes.SEARCH_BOOK;
+
+  constructor(public payload: string) { }
+}
+
+export class SearchBookSuccessAction implements Action {
+  readonly type = BookActionTypes.SEARCH_BOOK_SUCCESS;
+
+  constructor(public payload: string) { }
+}
+
+export class SearchBookFailureAction implements Action {
+  readonly type = BookActionTypes.SEARCH_BOOK_FAILURE;
+
+  constructor(public payload: Error) { }
+}
+
 export type BookActions =
   GetBooksAction |
   GetBooksSuccessAction |
@@ -106,4 +127,7 @@ export type BookActions =
   SelectBookAction |
   SelectedBookAction |
   DeselectedBookAction |
-  DeselectBookAction;
+  DeselectBookAction |
+  SearchBookAction |
+  SearchBookSuccessAction |
+  SearchBookFailureAction;

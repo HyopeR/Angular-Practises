@@ -43,6 +43,13 @@ module.exports = function () {
         description: 'Security about.',
         authorId: '63b3c133-1e90-48b1-8b42-d8762d7cef4c'
       },
+      {
+        id: "8f6a5f5c-069c-4a66-a682-3561efaa4436",
+        name: "Language",
+        price: 16.90,
+        description: 'Language about.',
+        authorId: 'd3e8b614-50e1-4c0f-bfa6-2e8b0f780abc'
+      },
     ],
     authors: [
       {
@@ -64,6 +71,11 @@ module.exports = function () {
         id: '63b3c133-1e90-48b1-8b42-d8762d7cef4c',
         name: 'Michael',
         surname: 'Versel'
+      },
+      {
+        id: 'd3e8b614-50e1-4c0f-bfa6-2e8b0f780abc',
+        name: 'John',
+        surname: 'Trigger'
       },
     ]
   }
