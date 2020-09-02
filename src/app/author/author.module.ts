@@ -4,17 +4,14 @@ import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 
-import {BookComponent} from './book.component';
-import { BookFormComponent } from './book-form/book-form.component';
-import { BookListComponent } from './book-list/book-list.component';
-import { BookDetailComponent } from './book-detail/book-detail.component';
+import {AuthorComponent} from './author.component';
 
 import {SearchPageComponent} from '../pages/search-page/search-page.component';
 
 
 @NgModule({
   /*
-    Export ile BookComponenti dışarı gönderiyoruz.
+    Export ile AuthorComponenti dışarı gönderiyoruz.
    */
   imports: [
     ModelModule,
@@ -22,13 +19,13 @@ import {SearchPageComponent} from '../pages/search-page/search-page.component';
     FormsModule,
     RouterModule,
     RouterModule.forRoot([
-      {path: 'book', component: BookComponent,
+      {path: 'author', component: AuthorComponent,
         children: [
           {path: 'search/:mode/:id', component: SearchPageComponent},
         ]},
     ])
   ],
-  declarations: [BookComponent, BookFormComponent, BookListComponent, BookDetailComponent],
-  exports: [BookComponent]
+  declarations: [AuthorComponent],
+  exports: [AuthorComponent]
 })
-export class BookModule {}
+export class AuthorModule {}

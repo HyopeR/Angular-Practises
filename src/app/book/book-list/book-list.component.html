@@ -1,6 +1,4 @@
-<div
-  [class.loading]="loading$ | async"
-  *ngIf="!(error$ | async)">
+<div *ngIf="!($bookError | async) as bookError">
 
   <ul class="list-group" *ngIf="bookItems | async">
     <li class="list-group-item"
@@ -18,10 +16,10 @@
         </div>
 
       </div>
-
       <div *ngIf="selected | async">
-        <book-detail *ngIf="book.id === selectedBook['id']" [book] = book></book-detail>
+        <book-detail *ngIf="book.id === selectedBook.id" [book] = book></book-detail>
       </div>
+
     </li>
 
   </ul>

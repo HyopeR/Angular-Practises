@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-12 col-md-6 p-0">
+
+    <div class="form-group mt-2">
+      <input type="text" class="form-control form-control-sm float-left rounded-0"
+             id="searchBar"
+             placeholder="Book or Author name."
+             name="searchBar"
+             [(ngModel)]="searchBar"
+      />
+    </div>
+
+  </div>
+
+  <div class="col-6 col-md-3 p-0">
+
+    <div class="form-group mt-2">
+      <div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
+        <label class="btn btn-sm btn-secondary rounded-0" [ngClass]="searchOption">
+          <input type="radio" (click)="changeSearchOption('book')" autocomplete="off" checked>Book
+        </label>
+        <label class="btn btn-sm btn-secondary rounded-0">
+          <input type="radio" (click)="changeSearchOption('author')" autocomplete="off">Author
+        </label>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="col-6 col-md-3 p-0">
+
+    <div class="form-group mt-2">
+      <button routerLink="/{{ searchOption }}/{{ searchBar }}" class="btn-sm btn-info w-100 rounded-0 border-bottom-0">
+        <small class="text-muted">
+          <i class="fas fa-search text-white"></i>
+        </small>
+        Search
+      </button>
+    </div>
+
+  </div>
+</div>

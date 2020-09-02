@@ -15,21 +15,23 @@ import {GetAuthorsAction} from '../../store/actions/author.actions';
 export class BookListComponent implements OnInit {
 
   bookItems: Observable<Array<Book>>;
-  loading$: Observable<boolean>;
-  error$: Observable<Error>;
+  $bookLoading: Observable<boolean>;
+  $bookError: Observable<Error>;
 
-  selectedBook: object;
+  selectedBook: Book;
   selected: Observable<boolean>;
 
   constructor(private store: Store<AppState>) {  }
 
   ngOnInit(): void {
     this.bookItems = this.store.select(store => store.books.list);
-    this.loading$ = this.store.select(store => store.books.loading);
-    this.error$ = this.store.select(store => store.books.error);
+    this.$bookLoading = this.store.select(store => store.books.loading);
+    this.$bookError = this.store.select(store => store.books.error);
 
+    this.store.select(store => store.books.selectedBook).subscribe(book => {
+      this.selectedBook = book;
+    });
     this.selected = this.store.select(store => store.books.selected);
-    this.store.dispatch(new GetBooksAction());
   }
 
   deleteBook(id) {
@@ -37,11 +39,8 @@ export class BookListComponent implements OnInit {
   }
 
   clickBook(book: Book) {
-    this.store.select(store => store.books.selectedBook).subscribe(data => {
-      this.selectedBook = data;
-    });
-
-    if (book.id !== this.selectedBook['id']) {
+    console.log(this.selectedBook);
+    if (book.id !== this.selectedBook.id) {
       this.store.dispatch(new SelectBookAction(book));
     } else {
       this.store.dispatch(new DeselectBookAction({}));

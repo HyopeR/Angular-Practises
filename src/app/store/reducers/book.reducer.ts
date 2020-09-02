@@ -3,7 +3,7 @@ import {Book} from '../models/book.model';
 
 export interface BookState {
   list: Book[];
-  selectedBook: {};
+  selectedBook: Book;
   selected: boolean;
   loading: boolean;
   error: Error;
@@ -87,17 +87,28 @@ export function BookReducer(
       return {
         ...state,
         selectedBook: action.payload,
-        selected: true,
-        loading: false
+        selected: false
+      };
+
+    case BookActionTypes.SELECTED_BOOK:
+      return {
+        ...state,
+        selected: true
       };
 
     case BookActionTypes.DESELECT_BOOK:
       return {
         ...state,
         selectedBook: action.payload,
-        selected: false,
-        loading: false
+        selected: true,
       };
+
+    case BookActionTypes.DESELECTED_BOOK:
+      return {
+        ...state,
+        selected: false
+      };
+
 
     default:
       return state;

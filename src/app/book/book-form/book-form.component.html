@@ -1,16 +1,15 @@
 <div class="form-group">
-  <label>Book Name: </label>
+  <label class="mt-2">Book Name: </label>
   <input class="form-control" [(ngModel)]="newBook.name">
 
-  <label>Price: </label>
+  <label class="mt-2">Price: </label>
   <input class="form-control" [(ngModel)]="newBook.price">
 
-  <label>Description: </label>
+  <label class="mt-2">Description: </label>
   <input class="form-control" [(ngModel)]="newBook.description">
 
-  <label>Author: </label>
-  <select [class.loading]="loading$ | async"
-          *ngIf="!(error$ | async)"
+  <label class="mt-2">Author: </label>
+  <select *ngIf="!(error$ | async)"
           class="form-control"
           [(ngModel)]="newBook.authorId"
   >
@@ -20,4 +19,4 @@
   </select>
 
 </div>
-<button class="btn btn-primary w-25" (click)="addBook()">Add Book</button>
+<button class="btn btn-info w-100" (click)="addBook()">Add Book</button>

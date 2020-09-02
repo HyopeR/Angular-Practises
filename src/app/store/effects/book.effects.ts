@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import {catchError, map, mergeMap} from 'rxjs/operators';
-import {of} from 'rxjs';
+import {from, Observable, of} from 'rxjs';
 
 import {RestService} from '../../model/rest.service';
 
@@ -15,7 +15,7 @@ import {
   DeleteBookSuccessAction,
   GetBooksAction,
   GetBooksFailureAction,
-  GetBooksSuccessAction, SelectBookAction
+  GetBooksSuccessAction, SelectBookAction, SelectedBookAction, DeselectBookAction, DeselectedBookAction
 } from '../actions/book.actions';
 
 @Injectable()
@@ -52,6 +52,28 @@ export class BookEffects {
           .pipe(
             map(() => new DeleteBookSuccessAction(data.payload)),
             catchError(error => of(new DeleteBookFailureAction(error)))
+          )
+      )
+    );
+
+  @Effect() selectBook = this.actions
+    .pipe(
+      ofType<SelectBookAction>(BookActionTypes.SELECT_BOOK),
+      mergeMap(
+        (data) => of(data.payload)
+          .pipe(
+            map(() => new SelectedBookAction(true))
+          )
+      )
+    );
+
+  @Effect() deselectBook = this.actions
+    .pipe(
+      ofType<DeselectBookAction>(BookActionTypes.DESELECT_BOOK),
+      mergeMap(
+        (data) => of(data.payload)
+          .pipe(
+            map(() => new DeselectedBookAction(false))
           )
       )
     );

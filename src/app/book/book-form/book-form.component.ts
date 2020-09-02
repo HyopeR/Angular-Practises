@@ -30,8 +30,6 @@ export class BookFormComponent implements OnInit {
     this.authors = this.store.select(store => store.authors.list);
     this.loading$ = this.store.select(store => store.authors.loading);
     this.error$ = this.store.select(store => store.authors.error);
-
-    this.store.dispatch(new GetAuthorsAction());
   }
 
   addBook() {

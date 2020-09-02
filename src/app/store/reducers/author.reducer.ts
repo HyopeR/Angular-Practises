@@ -3,12 +3,16 @@ import {Author} from '../models/author.model';
 
 export interface AuthorState {
   list: Author[];
+  selectedAuthor: Author;
+  selected: boolean;
   loading: boolean;
   error: Error;
 }
 
 const initialState: AuthorState = {
   list: [],
+  selectedAuthor: {},
+  selected: false,
   loading: false,
   error: undefined
 };
@@ -17,7 +21,7 @@ export function AuthorReducer(
   state: AuthorState = initialState,
   action: AuthorActions
 ) {
-
+  console.log(action);
   switch (action.type) {
     case AuthorActionTypes.GET_AUTHORS:
       return {
@@ -37,6 +41,18 @@ export function AuthorReducer(
         ...state,
         error: action.payload,
         loading: false
+      };
+
+    case AuthorActionTypes.SELECT_AUTHOR:
+      return {
+        ...state,
+        selectedAuthor: state.list.find(x => x.id === action.payload)
+      };
+
+    case AuthorActionTypes.SELECTED_AUTHOR:
+      return {
+        ...state,
+        selected: action.payload
       };
 
     default:
