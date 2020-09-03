@@ -2,6 +2,7 @@ import { Book } from '../models/book.model';
 import { Action } from '@ngrx/store';
 
 export enum BookActionTypes {
+  RETURN_BOOKS = '[BOOK] RETURN Books',
   GET_BOOKS = '[BOOK] GET Books',
   GET_BOOKS_SUCCESS = '[BOOK] GET Books Success',
   GET_BOOKS_FAILURE = '[BOOK] GET Books Failure',
@@ -14,10 +15,11 @@ export enum BookActionTypes {
   SELECT_BOOK = '[BOOK] Select Book',
   SELECTED_BOOK = '[BOOK] Selected Book',
   DESELECT_BOOK = '[BOOK] Deselect Book',
-  DESELECTED_BOOK = '[BOOK] Deselected Book',
-  SEARCH_BOOK = '[BOOK] Search Book',
-  SEARCH_BOOK_SUCCESS = '[BOOK] Search Book Success',
-  SEARCH_BOOK_FAILURE = '[BOOK] Search Book Failure'
+  DESELECTED_BOOK = '[BOOK] Deselected Book'
+}
+
+export class ReturnBooksAction implements Action {
+  readonly type = BookActionTypes.RETURN_BOOKS;
 }
 
 export class GetBooksAction implements Action {
@@ -96,25 +98,8 @@ export class DeselectedBookAction implements Action {
   constructor(public payload: boolean) { }
 }
 
-export class SearchBookAction implements Action {
-  readonly type = BookActionTypes.SEARCH_BOOK;
-
-  constructor(public payload: string) { }
-}
-
-export class SearchBookSuccessAction implements Action {
-  readonly type = BookActionTypes.SEARCH_BOOK_SUCCESS;
-
-  constructor(public payload: string) { }
-}
-
-export class SearchBookFailureAction implements Action {
-  readonly type = BookActionTypes.SEARCH_BOOK_FAILURE;
-
-  constructor(public payload: Error) { }
-}
-
 export type BookActions =
+  ReturnBooksAction |
   GetBooksAction |
   GetBooksSuccessAction |
   GetBooksFailureAction |
@@ -127,7 +112,4 @@ export type BookActions =
   SelectBookAction |
   SelectedBookAction |
   DeselectedBookAction |
-  DeselectBookAction |
-  SearchBookAction |
-  SearchBookSuccessAction |
-  SearchBookFailureAction;
+  DeselectBookAction;

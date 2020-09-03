@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import {Store} from '@ngrx/store';
 import { v4 as uuid } from 'uuid';
 
-import {AppState} from '../../store/models/app-state.model';
+import {AppState} from '../../store/reducers';
 import {Book} from '../../store/models/book.model';
 import {AddBookAction} from '../../store/actions/book.actions';
 import {GetAuthorsAction} from '../../store/actions/author.actions';

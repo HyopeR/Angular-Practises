@@ -10,10 +10,10 @@ import {DesignModule} from './design/design.module';
 import {BookModule} from './book/book.module';
 import {AuthorModule} from './author/author.module';
 
-import {BookReducer} from './store/reducers/book.reducer';
 import {BookEffects} from './store/effects/book.effects';
-import {AuthorReducer} from './store/reducers/author.reducer';
 import {AuthorEffects} from './store/effects/author.effects';
+import {SearchEffects} from './store/effects/search.effects';
+import {reducers} from './store/reducers';
 
 import { AppComponent } from './app.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
@@ -32,11 +32,8 @@ import { SearchPageComponent } from './pages/search-page/search-page.component';
     DesignModule,
     BookModule,
     AuthorModule,
-    StoreModule.forRoot({
-      books: BookReducer,
-      authors: AuthorReducer
-    }),
-    EffectsModule.forRoot([BookEffects, AuthorEffects]),
+    StoreModule.forRoot(reducers),
+    EffectsModule.forRoot([BookEffects, AuthorEffects, SearchEffects]),
     AppRoutingModule
   ],
   providers: [],

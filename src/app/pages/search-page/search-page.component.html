@@ -1,14 +1,11 @@
 <div class="container">
+  <error-alert *ngIf="searchError$ | async as error" [error]="error"></error-alert>
+  <loading-spinner *ngIf="searchLoading$ | async as loading"></loading-spinner>
 
   <div class="row" *ngIf="searchList$ | async as searchList">
 
-    <div class="col-12 col-md-12">
-      <error-alert *ngIf="searchError$ | async as error" [error]="error"></error-alert>
-      <loading-spinner *ngIf="searchSearching$ | async as searching"></loading-spinner>
-    </div>
-
     <div *ngFor="let searchItem of searchList" class="col-12 col-md-12">
-      {{ searchItem.name }}
+      {{ searchItem.surname }}
     </div>
 
   </div>

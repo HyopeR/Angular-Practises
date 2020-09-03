@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Store} from '@ngrx/store';
-import {AppState} from '../../store/models/app-state.model';
+import {select, Store} from '@ngrx/store';
+import {AppState} from '../../store/reducers';
 
-import {SearchBookAction} from '../../store/actions/book.actions';
-import {SearchAuthorAction} from '../../store/actions/author.actions';
-import {Observable} from 'rxjs';
+import {Observable, of} from 'rxjs';
 import {Book} from '../../store/models/book.model';
 import {Author} from '../../store/models/author.model';
+import {SearchAction} from '../../store/actions/search.actions';
+import {getSearchError, getSearchList, getSearchLoading} from '../../store/selectors/search.selectors';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -22,29 +22,23 @@ export class SearchPageComponent implements OnInit {
 
   searchList$: Observable<Array<Book>> | Observable<Array<Author>>;
   searchError$: Observable<Error>;
-  searchSearching$: Observable<boolean>;
+  searchLoading$: Observable<boolean>;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private store: Store<AppState>,
     private router: Router,
-  ) {  }
+  ) {}
 
   ngOnInit() {
     this.mode = this.activatedRoute.snapshot.params.mode;
     this.searchText = this.activatedRoute.snapshot.params.searchText;
 
-    this.searchList$ = this.store.select(store => store.books.search.list);
-    this.searchError$ = this.store.select(store => store.books.search.error);
-    this.searchSearching$ = this.store.select(store => store.books.search.searching);
+    this.store.dispatch(new SearchAction(this.searchText, this.mode));
 
-    if (this.mode === 'book') {
-      this.store.dispatch(new SearchBookAction(this.searchText));
-    } else if (this.mode === 'author') {
-      this.store.dispatch(new SearchAuthorAction(this.searchText));
-    } else {
-      this.router.navigateByUrl('/home');
-    }
+    this.searchList$ = this.store.select(getSearchList);
+    this.searchError$ = this.store.select(getSearchError);
+    this.searchLoading$ = this.store.select(getSearchLoading);
   }
 
 }

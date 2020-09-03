@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Observable} from 'rxjs';
 import {isEmpty} from 'lodash';
 import {Store} from '@ngrx/store';
-import {AppState} from '../../store/models/app-state.model';
+import {AppState} from '../../store/reducers';
 import {DeleteBookAction, DeselectBookAction, SelectBookAction} from '../../store/actions/book.actions';
 
 import {Book} from '../../store/models/book.model';

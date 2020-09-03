@@ -2,14 +2,16 @@ import { Author } from '../models/author.model';
 import { Action } from '@ngrx/store';
 
 export enum AuthorActionTypes {
+  RETURN_AUTHORS = '[AUTHOR] RETURN Authors',
   GET_AUTHORS = '[AUTHOR] GET Authors',
   GET_AUTHORS_SUCCESS = '[AUTHOR] GET Authors Success',
   GET_AUTHORS_FAILURE = '[AUTHOR] GET Authors Failure',
   SELECT_AUTHOR = '[AUTHOR] SELECT Author',
-  SELECTED_AUTHOR = '[AUTHOR] SELECTED Author',
-  SEARCH_AUTHOR = '[AUTHOR] SEARCH Author',
-  SEARCH_AUTHOR_SUCCESS = '[AUTHOR] SEARCH Author Success',
-  SEARCH_AUTHOR_FAILURE = '[AUTHOR] SEARCH Author Failure'
+  SELECTED_AUTHOR = '[AUTHOR] SELECTED Author'
+}
+
+export class ReturnAuthorsAction implements Action {
+  readonly type = AuthorActionTypes.RETURN_AUTHORS;
 }
 
 export class GetAuthorsAction implements Action {
@@ -40,30 +42,10 @@ export class SelectedAuthorAction implements Action {
   constructor(public payload: boolean) {}
 }
 
-export class SearchAuthorAction implements Action {
-  readonly type = AuthorActionTypes.SEARCH_AUTHOR;
-
-  constructor(public payload: string) { }
-}
-
-export class SearchAuthorSuccessAction implements Action {
-  readonly type = AuthorActionTypes.SEARCH_AUTHOR_SUCCESS;
-
-  constructor(public payload: string) { }
-}
-
-export class SearchAuthorFailureAction implements Action {
-  readonly type = AuthorActionTypes.SEARCH_AUTHOR_FAILURE;
-
-  constructor(public payload: Error) { }
-}
-
 export type AuthorActions =
+  ReturnAuthorsAction |
   GetAuthorsAction |
   GetAuthorsSuccessAction |
   GetAuthorsFailureAction |
   SelectAuthorAction |
-  SelectedAuthorAction |
-  SearchAuthorAction |
-  SearchAuthorSuccessAction |
-  SearchAuthorFailureAction;
+  SelectedAuthorAction;

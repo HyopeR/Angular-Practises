@@ -9,7 +9,7 @@ import {
   AuthorActionTypes,
   GetAuthorsAction,
   GetAuthorsFailureAction,
-  GetAuthorsSuccessAction, SearchAuthorAction, SearchAuthorFailureAction, SearchAuthorSuccessAction
+  GetAuthorsSuccessAction
 } from '../actions/author.actions';
 
 @Injectable()
@@ -22,18 +22,6 @@ export class AuthorEffects {
         () => this.restService.getAuthors().pipe(
             map(data => new GetAuthorsSuccessAction(data)),
             catchError(error => of(new GetAuthorsFailureAction(error)))
-          )
-      )
-    );
-
-  @Effect() searchAuthor = this.actions
-    .pipe(
-      ofType<SearchAuthorAction>(AuthorActionTypes.SEARCH_AUTHOR),
-      mergeMap(
-        (data) => of(data.payload)
-          .pipe(
-            map(() => new SearchAuthorSuccessAction(data.payload)),
-            catchError(error => of(new SearchAuthorFailureAction(error)))
           )
       )
     );

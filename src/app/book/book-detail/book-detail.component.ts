@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Book} from '../../store/models/book.model';
 import {Store} from '@ngrx/store';
-import {AppState} from '../../store/models/app-state.model';
+import {AppState} from '../../store/reducers';
 import {Author} from '../../store/models/author.model';
 import {SelectAuthorAction} from '../../store/actions/author.actions';
 import {Observable} from 'rxjs';

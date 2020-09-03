@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {AppState} from './store/models/app-state.model';
 import {GetBooksAction} from './store/actions/book.actions';
 import {GetAuthorsAction} from './store/actions/author.actions';
+import {AppState} from './store/reducers';
 
 @Component({
   // tslint:disable-next-line:component-selector

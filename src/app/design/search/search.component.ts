@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Store} from '@ngrx/store';
-import {AppState} from '../../store/models/app-state.model';
-import {SearchBookAction} from '../../store/actions/book.actions';
-import {SearchAuthorAction} from '../../store/actions/author.actions';
+import {AppState} from '../../store/reducers';
+import {SearchAction} from '../../store/actions/search.actions';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -23,19 +22,7 @@ export class SearchComponent implements OnInit {
   }
 
   search() {
-    switch (this.searchOption) {
-      case 'book':
-        this.store.dispatch(new SearchBookAction(this.searchText));
-        break;
-
-      case 'author':
-        this.store.dispatch(new SearchAuthorAction(this.searchText));
-        break;
-
-      default:
-        console.log('Wrong request.');
-        break;
-    }
+    this.store.dispatch(new SearchAction(this.searchText, this.searchOption));
   }
 
 }
