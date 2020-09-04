@@ -23,6 +23,7 @@
     "@fortawesome/fontawesome-free": "^5.14.0",
     "@ngrx/effects": "^10.0.0",
     "@ngrx/store": "^10.0.0",
+    "@ngrx/store-devtools": "^10.0.0",
     "bootstrap": "^4.5.2",
     "core-js": "^2.5.4",
     "jquery": "^3.5.1",

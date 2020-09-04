@@ -21,7 +21,6 @@ export function AuthorReducer(
   state: AuthorState = initialState,
   action: AuthorActions
 ) {
-  console.log(action, state);
   switch (action.type) {
     case AuthorActionTypes.GET_AUTHORS:
       return {
@@ -59,3 +58,6 @@ export function AuthorReducer(
       return state;
   }
 }
+
+export const authorList = (state: AuthorState) => state.list;
+

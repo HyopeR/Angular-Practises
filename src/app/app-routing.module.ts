@@ -10,7 +10,7 @@ const routes: Routes = [
   {path: 'home', component: HomePageComponent},
   {path: 'book', component: BookComponent},
   {path: 'author', component: AuthorComponent},
-  {path: 'search/:mode/:searchText', component: SearchPageComponent},
+  {path: 'search/:searchMode/:searchText', component: SearchPageComponent},
   {path: '**', redirectTo: 'home'}
 ];
 

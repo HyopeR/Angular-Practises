@@ -7,8 +7,8 @@ import {Observable, of} from 'rxjs';
 import {Book} from '../../store/models/book.model';
 import {Author} from '../../store/models/author.model';
 import {SearchAction} from '../../store/actions/search.actions';
-import {getSearchError, getSearchList, getSearchLoading} from '../../store/selectors/search.selectors';
-
+import {getSearchList, stateSearch, getSearchState} from '../../store/selectors/search.selectors';
+import {SearchState} from '../../store/reducers/search.reducer';
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'search-page',
@@ -17,12 +17,11 @@ import {getSearchError, getSearchList, getSearchLoading} from '../../store/selec
 })
 export class SearchPageComponent implements OnInit {
 
-  mode: string;
+  searchMode: string;
   searchText: string;
 
-  searchList$: Observable<Array<Book>> | Observable<Array<Author>>;
-  searchError$: Observable<Error>;
-  searchLoading$: Observable<boolean>;
+  searchState$: Observable<SearchState>;
+  searchList$: Observable<Array<Book>> | Observable<Array<Author>> | object;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -31,14 +30,19 @@ export class SearchPageComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.mode = this.activatedRoute.snapshot.params.mode;
-    this.searchText = this.activatedRoute.snapshot.params.searchText;
-
-    this.store.dispatch(new SearchAction(this.searchText, this.mode));
-
-    this.searchList$ = this.store.select(getSearchList);
-    this.searchError$ = this.store.select(getSearchError);
-    this.searchLoading$ = this.store.select(getSearchLoading);
+    this.search();
   }
 
+  search() {
+    setTimeout(() => {
+      this.searchMode = this.activatedRoute.snapshot.params.searchMode;
+      this.searchText = this.activatedRoute.snapshot.params.searchText;
+      this.searchState$ = this.store.select(getSearchState());
+      this.searchList$ = this.store.select(getSearchList());
+
+      this.store.dispatch(new SearchAction(this.searchText, this.searchMode));
+    }, 500);
+
+
+  }
 }

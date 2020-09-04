@@ -118,3 +118,5 @@ export function BookReducer(
       return state;
   }
 }
+
+export const bookList = (state: BookState) => state.list;

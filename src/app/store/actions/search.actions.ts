@@ -11,13 +11,13 @@ export enum SearchActionTypes {
 export class SearchAction implements Action {
   readonly type = SearchActionTypes.SEARCH;
 
-  constructor(public payload: string, public searchKey: string) { }
+  constructor(public searchText: string, public searchKey: string) { }
 }
 
 export class SearchSuccessAction implements Action {
   readonly type = SearchActionTypes.SEARCH_SUCCESS;
 
-  constructor(public payload: Book[] | Author[] | null, public searchKey: string) { }
+  constructor(public payload: Book[] | Author[] | null) { }
 }
 
 export class SearchFailureAction implements Action {

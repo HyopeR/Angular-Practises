@@ -4,7 +4,7 @@
     <div class="form-group mt-2">
       <input type="text" class="form-control form-control-sm float-left rounded-0"
              id="searchBar"
-             placeholder="Book or Author name."
+             [placeholder]="(observablePlaceHolder$ | async) ? (observablePlaceHolder$ | async) : 'Book or Author name.'"
              name="searchBar"
              [(ngModel)]="searchText"
       />
@@ -16,7 +16,7 @@
 
     <div class="form-group mt-2">
       <div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
-        <label class="btn btn-sm btn-secondary rounded-0" [ngClass]="searchOption">
+        <label class="btn btn-sm btn-secondary rounded-0" [ngClass]="searchMode">
           <input type="radio" (click)="changeSearchOption('book')" autocomplete="off" checked>Book
         </label>
         <label class="btn btn-sm btn-secondary rounded-0">
@@ -30,7 +30,7 @@
   <div class="col-6 col-md-3 p-0">
 
     <div class="form-group mt-2">
-      <button routerLink="/search/{{ searchOption }}/{{ searchText }}" (click)="search()" class="btn-sm btn-info w-100 rounded-0 border-bottom-0">
+      <button routerLink="/search/{{ searchMode }}/{{ searchText }}" (click)="search()" class="btn-sm btn-info w-100 rounded-0 border-bottom-0">
         <small class="text-muted">
           <i class="fas fa-search text-white"></i>
         </small>

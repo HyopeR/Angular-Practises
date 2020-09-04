@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Store} from '@ngrx/store';
 import {AppState} from '../../store/reducers';
 import {SearchAction} from '../../store/actions/search.actions';
+import {Observable} from 'rxjs';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -10,19 +11,23 @@ import {SearchAction} from '../../store/actions/search.actions';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
+  searchMode: string = 'book';
   searchText: string = '';
-  searchOption: string = 'book';
+
+  observablePlaceHolder$: Observable<string>;
 
   constructor(private store: Store<AppState>) { }
 
-  ngOnInit() {  }
+  ngOnInit() {
+    this.observablePlaceHolder$ = this.store.select(store => store.search.searchText);
+  }
 
   changeSearchOption(option) {
-    this.searchOption = option;
+    this.searchMode = option;
   }
 
   search() {
-    this.store.dispatch(new SearchAction(this.searchText, this.searchOption));
+    this.store.dispatch(new SearchAction(this.searchText, this.searchMode));
   }
 
 }

@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import {StoreModule} from '@ngrx/store';
 import {FormsModule} from '@angular/forms';
 import {EffectsModule} from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 import {AppRoutingModule} from './app-routing.module';
 import {ModelModule} from './model/model.module';
@@ -19,6 +21,7 @@ import { AppComponent } from './app.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { SearchPageComponent } from './pages/search-page/search-page.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +37,8 @@ import { SearchPageComponent } from './pages/search-page/search-page.component';
     AuthorModule,
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([BookEffects, AuthorEffects, SearchEffects]),
-    AppRoutingModule
+    AppRoutingModule,
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]

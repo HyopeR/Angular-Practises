@@ -7,32 +7,39 @@ export interface SearchState {
   loading: boolean;
   error: Error;
   searchKey: string;
+  searchText: string;
+  searchResult: boolean;
 }
 
 const initialState: SearchState = {
   list: [],
   loading: false,
   error: undefined,
-  searchKey: 'books'
+  searchKey: 'book',
+  searchText: '',
+  searchResult: false,
 };
 
 export function SearchReducer(
   state: SearchState = initialState,
   action: SearchActions
 ) {
+  console.log(action.type);
   switch (action.type) {
     case SearchActionTypes.SEARCH:
       return {
         ...state,
-        searchArea: action.searchKey,
+        searchText: action.searchText,
+        searchKey: action.searchKey,
         loading: true
       };
 
     case SearchActionTypes.SEARCH_SUCCESS:
+      let controller = action.payload.length > 0;
       return {
         ...state,
-        searchArea: action.searchKey,
         list: action.payload,
+        searchResult: controller,
         loading: false
       };
 
@@ -40,6 +47,7 @@ export function SearchReducer(
       return {
         ...state,
         error: action.payload,
+        searchResult: false,
         loading: false
       };
 
@@ -48,7 +56,9 @@ export function SearchReducer(
   }
 }
 
+export const searchAllState = (state: SearchState) => state;
 export const searchList = (state: SearchState) => state.list;
-export const searchLoading = (state: SearchState) => state.loading;
-export const searchError = (state: SearchState) => state.error;
-export const searchKey = (state: SearchState) => state.searchKey;
+
+// export const searchLoading = (state: SearchState) => state.loading;
+// export const searchError = (state: SearchState) => state.error;
+// export const searchBooleanResult = (state: SearchState) => state.searchResult;
