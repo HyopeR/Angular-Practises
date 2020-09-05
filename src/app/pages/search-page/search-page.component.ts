@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {select, Store} from '@ngrx/store';
+import {Store} from '@ngrx/store';
 import {AppState} from '../../store/reducers';
 
-import {Observable, of} from 'rxjs';
+import {Observable, Subscriber, Subscription} from 'rxjs';
 import {Book} from '../../store/models/book.model';
 import {Author} from '../../store/models/author.model';
 import {SearchAction} from '../../store/actions/search.actions';
-import {getSearchList, stateSearch, getSearchState} from '../../store/selectors/search.selectors';
+import {getSearchList, stateSearch} from '../../store/selectors/search.selectors';
 import {SearchState} from '../../store/reducers/search.reducer';
+
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'search-page',
@@ -21,7 +22,9 @@ export class SearchPageComponent implements OnInit {
   searchText: string;
 
   searchState$: Observable<SearchState>;
-  searchList$: Observable<Array<Book>> | Observable<Array<Author>> | object;
+  searchList$: Observable<Array<Book>> | Observable<Array<Author>> | Array<any>;
+
+  waitData: Subscription;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -30,19 +33,19 @@ export class SearchPageComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.search();
+    this.waitData = this.store.select(store => store.authors.loaded).subscribe(loaded => {
+      loaded ? this.search() : console.log('Datas are not ready.');
+    });
   }
 
   search() {
-    setTimeout(() => {
-      this.searchMode = this.activatedRoute.snapshot.params.searchMode;
-      this.searchText = this.activatedRoute.snapshot.params.searchText;
-      this.searchState$ = this.store.select(getSearchState());
-      this.searchList$ = this.store.select(getSearchList());
+    this.searchMode = this.activatedRoute.snapshot.params.searchMode;
+    this.searchText = this.activatedRoute.snapshot.params.searchText;
+    this.searchState$ = this.store.select(stateSearch);
+    this.searchList$ = this.store.select(getSearchList);
 
-      this.store.dispatch(new SearchAction(this.searchText, this.searchMode));
-    }, 500);
-
-
+    this.store.select(store => store.search.loaded).subscribe(loaded => {
+      const controller = !loaded ? this.store.dispatch(new SearchAction(this.searchText, this.searchMode)) : null;
+    }).unsubscribe();
   }
 }

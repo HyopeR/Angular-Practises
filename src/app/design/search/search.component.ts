@@ -27,7 +27,7 @@ export class SearchComponent implements OnInit {
   }
 
   search() {
-    this.store.dispatch(new SearchAction(this.searchText, this.searchMode));
+    this.searchText !== '' ? this.store.dispatch(new SearchAction(this.searchText, this.searchMode)) : null;
   }
 
 }

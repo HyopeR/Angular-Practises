@@ -13,10 +13,15 @@ import {AppState} from './store/reducers';
 export class AppComponent implements OnInit {
 
   constructor(private store: Store<AppState>) {
+    this.loadBaseData();
+  }
+
+  ngOnInit(): void {
+  }
+
+  loadBaseData() {
     this.store.dispatch(new GetBooksAction());
     this.store.dispatch(new GetAuthorsAction());
   }
-
-  ngOnInit(): void {}
 
 }

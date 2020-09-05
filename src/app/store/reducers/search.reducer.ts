@@ -2,9 +2,12 @@ import {SearchActions, SearchActionTypes} from '../actions/search.actions';
 import {Book} from '../models/book.model';
 import {Author} from '../models/author.model';
 
+export const searchFeatureKey = 'search';
+
 export interface SearchState {
-  list: Book[] | Author[] | null;
+  list: Book[] | Author[] | [];
   loading: boolean;
+  loaded: boolean;
   error: Error;
   searchKey: string;
   searchText: string;
@@ -14,6 +17,7 @@ export interface SearchState {
 const initialState: SearchState = {
   list: [],
   loading: false,
+  loaded: false,
   error: undefined,
   searchKey: 'book',
   searchText: '',
@@ -31,7 +35,8 @@ export function SearchReducer(
         ...state,
         searchText: action.searchText,
         searchKey: action.searchKey,
-        loading: true
+        loading: true,
+        loaded: false
       };
 
     case SearchActionTypes.SEARCH_SUCCESS:
@@ -40,7 +45,8 @@ export function SearchReducer(
         ...state,
         list: action.payload,
         searchResult: controller,
-        loading: false
+        loading: false,
+        loaded: true
       };
 
     case SearchActionTypes.SEARCH_FAILURE:
@@ -48,7 +54,8 @@ export function SearchReducer(
         ...state,
         error: action.payload,
         searchResult: false,
-        loading: false
+        loading: false,
+        loaded: false
       };
 
     default:

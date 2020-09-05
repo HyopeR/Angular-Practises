@@ -1,7 +1,7 @@
 import {createFeatureSelector, createSelector} from '@ngrx/store';
-import {bookList, BookState} from '../reducers/book.reducer';
+import {bookFeatureKey, bookList, BookState} from '../reducers/book.reducer';
 
-export const featureBooks = createFeatureSelector<BookState>('books');
-export const book = createSelector(featureBooks, (state: BookState) => state);
+export const featureBooks = createFeatureSelector<BookState>(bookFeatureKey);
+export const stateBook = createSelector(featureBooks, (state: BookState) => state);
 
-export const getBookList = createSelector(book, bookList);
+export const getBookList = createSelector(stateBook, bookList);

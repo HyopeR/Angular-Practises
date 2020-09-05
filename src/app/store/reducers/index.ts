@@ -2,7 +2,6 @@ import * as fromBook from './book.reducer';
 import * as fromAuthor from './author.reducer';
 import * as fromSearch from './search.reducer';
 
-import { AppState } from '../models/app-state.model';
 import {ActionReducerMap} from '@ngrx/store';
 
 export interface AppState {

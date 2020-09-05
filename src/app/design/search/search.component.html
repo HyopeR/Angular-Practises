@@ -30,7 +30,10 @@
   <div class="col-6 col-md-3 p-0">
 
     <div class="form-group mt-2">
-      <button routerLink="/search/{{ searchMode }}/{{ searchText }}" (click)="search()" class="btn-sm btn-info w-100 rounded-0 border-bottom-0">
+      <button
+        [routerLink]="searchText !== '' ? '/search/' + searchMode + '/' + searchText : null"
+        (click)="search()"
+        class="btn-sm btn-info w-100 rounded-0 border-bottom-0">
         <small class="text-muted">
           <i class="fas fa-search text-white"></i>
         </small>

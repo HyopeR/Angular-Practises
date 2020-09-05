@@ -1,11 +1,15 @@
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import {AuthorActions, AuthorActionTypes} from '../actions/author.actions';
 import {Author} from '../models/author.model';
+
+export const authorFeatureKey = 'authors';
 
 export interface AuthorState {
   list: Author[];
   selectedAuthor: Author;
   selected: boolean;
   loading: boolean;
+  loaded: boolean;
   error: Error;
 }
 
@@ -14,6 +18,7 @@ const initialState: AuthorState = {
   selectedAuthor: {},
   selected: false,
   loading: false,
+  loaded: false,
   error: undefined
 };
 
@@ -29,17 +34,20 @@ export function AuthorReducer(
       };
 
     case AuthorActionTypes.GET_AUTHORS_SUCCESS:
+
       return {
         ...state,
         list: action.payload,
-        loading: false
+        loading: false,
+        loaded: true
       };
 
     case AuthorActionTypes.GET_AUTHORS_FAILURE:
       return {
         ...state,
         error: action.payload,
-        loading: false
+        loading: false,
+        loaded: false
       };
 
     case AuthorActionTypes.SELECT_AUTHOR:

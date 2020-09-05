@@ -2,7 +2,6 @@ import { Book } from '../models/book.model';
 import { Action } from '@ngrx/store';
 
 export enum BookActionTypes {
-  RETURN_BOOKS = '[BOOK] RETURN Books',
   GET_BOOKS = '[BOOK] GET Books',
   GET_BOOKS_SUCCESS = '[BOOK] GET Books Success',
   GET_BOOKS_FAILURE = '[BOOK] GET Books Failure',
@@ -16,10 +15,6 @@ export enum BookActionTypes {
   SELECTED_BOOK = '[BOOK] Selected Book',
   DESELECT_BOOK = '[BOOK] Deselect Book',
   DESELECTED_BOOK = '[BOOK] Deselected Book'
-}
-
-export class ReturnBooksAction implements Action {
-  readonly type = BookActionTypes.RETURN_BOOKS;
 }
 
 export class GetBooksAction implements Action {
@@ -99,7 +94,6 @@ export class DeselectedBookAction implements Action {
 }
 
 export type BookActions =
-  ReturnBooksAction |
   GetBooksAction |
   GetBooksSuccessAction |
   GetBooksFailureAction |

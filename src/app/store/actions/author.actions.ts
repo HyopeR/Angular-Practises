@@ -2,16 +2,11 @@ import { Author } from '../models/author.model';
 import { Action } from '@ngrx/store';
 
 export enum AuthorActionTypes {
-  RETURN_AUTHORS = '[AUTHOR] RETURN Authors',
   GET_AUTHORS = '[AUTHOR] GET Authors',
   GET_AUTHORS_SUCCESS = '[AUTHOR] GET Authors Success',
   GET_AUTHORS_FAILURE = '[AUTHOR] GET Authors Failure',
   SELECT_AUTHOR = '[AUTHOR] SELECT Author',
   SELECTED_AUTHOR = '[AUTHOR] SELECTED Author'
-}
-
-export class ReturnAuthorsAction implements Action {
-  readonly type = AuthorActionTypes.RETURN_AUTHORS;
 }
 
 export class GetAuthorsAction implements Action {
@@ -43,7 +38,6 @@ export class SelectedAuthorAction implements Action {
 }
 
 export type AuthorActions =
-  ReturnAuthorsAction |
   GetAuthorsAction |
   GetAuthorsSuccessAction |
   GetAuthorsFailureAction |

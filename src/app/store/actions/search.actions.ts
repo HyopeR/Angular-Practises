@@ -17,7 +17,7 @@ export class SearchAction implements Action {
 export class SearchSuccessAction implements Action {
   readonly type = SearchActionTypes.SEARCH_SUCCESS;
 
-  constructor(public payload: Book[] | Author[] | null) { }
+  constructor(public payload: Book[] | Author[] | []) { }
 }
 
 export class SearchFailureAction implements Action {

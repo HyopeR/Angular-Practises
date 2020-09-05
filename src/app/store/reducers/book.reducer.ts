@@ -1,11 +1,14 @@
 import {BookActions, BookActionTypes} from '../actions/book.actions';
 import {Book} from '../models/book.model';
 
+export const bookFeatureKey = 'books';
+
 export interface BookState {
   list: Book[];
   selectedBook: Book;
   selected: boolean;
   loading: boolean;
+  loaded: boolean;
   error: Error;
 }
 
@@ -14,6 +17,7 @@ const initialState: BookState = {
   selectedBook: {},
   selected: false,
   loading: false,
+  loaded: false,
   error: undefined
 };
 
@@ -29,23 +33,20 @@ export function BookReducer(
         loading: true
       };
 
-    case BookActionTypes.RETURN_BOOKS:
-      return {
-        ...state,
-      };
-
     case BookActionTypes.GET_BOOKS_SUCCESS:
       return {
         ...state,
         list: action.payload,
-        loading: false
+        loading: false,
+        loaded: true
       };
 
     case BookActionTypes.GET_BOOKS_FAILURE:
       return {
         ...state,
         error: action.payload,
-        loading: false
+        loading: false,
+        loaded: false
       };
 
     case BookActionTypes.ADD_BOOK:
