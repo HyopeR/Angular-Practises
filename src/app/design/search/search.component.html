@@ -1,8 +1,16 @@
 <div class="row">
   <div class="col-12 col-md-6 p-0">
 
-    <div class="form-group mt-2">
+    <div class="form-group mt-2 position-relative">
+      <button class="btn btn-sm btn-secondary rounded-0 position-absolute"
+              *ngIf="(observablePlaceHolder$ | async) as oldSearchText"
+              (click)="callHistorySearch(oldSearchText)"
+              routerLink="/search/{{searchMode}}/{{oldSearchText}}"
+              >
+        <i class="fas fa-history text-white"></i>
+      </button>
       <input type="text" class="form-control form-control-sm float-left rounded-0"
+             [class.search-input-pl]="(observablePlaceHolder$ | async)"
              id="searchBar"
              [placeholder]="(observablePlaceHolder$ | async) ? (observablePlaceHolder$ | async) : 'Book or Author name.'"
              name="searchBar"

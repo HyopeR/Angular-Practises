@@ -1,11 +1,11 @@
-<div class="container" *ngIf="(searchState$ | async) as searchState">
+<div *ngIf="(searchState$ | async) as searchState">
 
-  <error-alert *ngIf="searchState.error" [error]="searchState.error"></error-alert>
-  <loading-spinner *ngIf="searchState.loading"></loading-spinner>
+  <div *ngIf="(searchList$ | async) as searchList" class="row min-vh-100 pt-3 pb-3">
+    <error-alert *ngIf="searchState.error" [error]="searchState.error"></error-alert>
+    <loading-spinner *ngIf="searchState.loading"></loading-spinner>
 
-  <div class="row mt-3" *ngIf="(searchList$ | async) as searchList">
-    <div *ngFor="let searchItem of searchList" class="col-12 col-md-12">
 
+    <div class="col-4 col-md-4" *ngFor="let searchItem of searchList">
       <div *ngIf="searchState.searchKey === 'book'">
         {{ searchItem.name }} - {{ searchItem.description }} - {{ searchItem.price }}
       </div>
@@ -13,17 +13,15 @@
       <div *ngIf="searchState.searchKey === 'author'">
         {{ searchItem.name }} - {{ searchItem.surname }}
       </div>
+
     </div>
-  </div>
 
-  <div class="row mt-3" *ngIf="!(searchState.searchResult)">
-    <div class="col-12 col-md-12">
 
+    <div class="col-12 col-md-12" *ngIf="!(searchState.searchResult)">
       <div class="text-center">
         <h3>The {{ searchState.searchKey }} ({{ searchState.searchText }}) you are looking for was not found.</h3>
       </div>
-
     </div>
-  </div>
 
+  </div>
 </div>

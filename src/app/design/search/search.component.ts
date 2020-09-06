@@ -28,6 +28,11 @@ export class SearchComponent implements OnInit {
     this.searchMode = option;
   }
 
+  callHistorySearch(oldSearchText) {
+    this.searchText = oldSearchText;
+    this.search();
+  }
+
   search() {
     this.searchText !== ''
       ? this.store.dispatch(SearchActions.SearchAction({searchText: this.searchText, searchKey: this.searchMode}))
