@@ -6,7 +6,7 @@
 
     <div>
       <div class="card mt-3" (click)="clickBook(book)">
-        <img class="card-img-top" style="max-height: 300px !important;" src="{{book.img_url}}" alt="Card image cap">
+        <img class="card-img-top" style="max-height: 300px !important;" src="{{book.img_url}}" alt="{{book.name}} Poster">
         <div class="card-body p-3">
           <h5 class="card-title">{{book.name}}</h5>
           <p class="card-text cart-description-formatter">{{book.description}}</p>
