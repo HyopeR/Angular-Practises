@@ -1,28 +1,32 @@
 <error-alert *ngIf="error$ | async as error" [error]="error"></error-alert>
-<loading-spinner *ngIf="loading$ | async as loading"></loading-spinner>
+<loading-spinner *ngIf="loading$ | async as loading" [spinnerType]="'grow-absolute'"></loading-spinner>
 
-<div class="form-group" *ngIf="!(error$ | async) && !(loading$ | async)">
-  <label class="mt-2">Book Name: </label>
-  <input class="form-control" [(ngModel)]="newBook.name">
+<div *ngIf="!(error$ | async) && !(loading$ | async)">
+  <div class="form-group">
+    <label class="mt-2">Book Name: </label>
+    <input class="form-control" [(ngModel)]="newBook.name">
 
-  <label class="mt-2">Price: </label>
-  <input class="form-control" [(ngModel)]="newBook.price">
+    <label class="mt-2">Price: </label>
+    <input class="form-control" [(ngModel)]="newBook.price">
 
-  <label class="mt-2">Description: </label>
-  <input class="form-control" [(ngModel)]="newBook.description">
+    <label class="mt-2">Description: </label>
+    <input class="form-control" [(ngModel)]="newBook.description">
 
-  <label class="mt-2">Image Url: </label>
-  <input class="form-control" [(ngModel)]="newBook.img_url">
+    <label class="mt-2">Image Url: </label>
+    <input class="form-control" [(ngModel)]="newBook.img_url">
 
-  <label class="mt-2">Author: </label>
-  <select *ngIf="authors$ | async as authors"
-          class="form-control"
-          [(ngModel)]="newBook.authorId"
-  >
-    <option *ngFor="let author of authors" [ngValue]="author.id">
-      {{ author.name }} {{ author.surname }}
-    </option>
-  </select>
+    <label class="mt-2">Author: </label>
+    <select *ngIf="authors$ | async as authors"
+            class="form-control"
+            [(ngModel)]="newBook.authorId"
+    >
+      <option *ngFor="let author of authors" [ngValue]="author.id">
+        {{ author.name }} {{ author.surname }}
+      </option>
+    </select>
 
+  </div>
+  <button class="btn btn-info w-100" (click)="addBook()">Add Book</button>
 </div>
-<button class="btn btn-info w-100" (click)="addBook()">Add Book</button>
+
+

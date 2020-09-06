@@ -1,5 +1,5 @@
 <error-alert *ngIf="error$ | async as error" [error]="error"></error-alert>
-<loading-spinner *ngIf="loading$ | async as loading"></loading-spinner>
+<loading-spinner *ngIf="loading$ | async as loading" [spinnerType]="'grow-absolute'"></loading-spinner>
 
 <div class="row" *ngIf="bookItems$ | async as bookItems">
   <div class="col-6 col-md-4" *ngFor="let book of bookItems">

@@ -8,6 +8,9 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class LoadingSpinnerComponent implements OnInit {
 
+  // spinnerType -> border-default, grow-absolute
+  @Input() spinnerType: string;
+
   constructor() { }
 
   ngOnInit() {

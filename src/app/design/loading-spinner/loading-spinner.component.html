@@ -1,12 +1,11 @@
-<div class="d-flex align-items-center justify-content-center p-3">
+<div class="d-flex align-items-center justify-content-center p-3" *ngIf="spinnerType === 'border-default'">
   <div class="spinner-border text-info" role="status">
     <span class="sr-only">Loading...</span>
   </div>
 </div>
 
-<!--Not Ready-->
-<!--<div class="transparentBlackAbsolute d-flex align-items-center justify-content-center" *ngIf="spinnerType === '2'">-->
-<!--  <div class="spinner-border text-info" role="status">-->
-<!--    <span class="sr-only">Loading...</span>-->
-<!--  </div>-->
-<!--</div>-->
+<div class="st2-transparent-black-absolute d-flex align-items-center justify-content-center" *ngIf="spinnerType === 'grow-absolute'">
+  <div class="spinner-grow text-info st2-spinner-sizing d-flex align-items-center justify-content-center" role="status">
+    <span class="text-dark st2-loading-text">Loading...</span>
+  </div>
+</div>

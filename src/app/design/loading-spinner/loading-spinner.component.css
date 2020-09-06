@@ -1,6 +1,20 @@
-.transparentBlackAbsolute {
+/* St2- Spinner Type 2 */
+.st2-transparent-black-absolute {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0, 0.3);
+  background: rgba(0,0,0, 0.7);
+  left: 0;
+  top: 0;
+  z-index: 3;
 }
+
+.st2-spinner-sizing {
+  width: 150px;
+  height: 150px;
+}
+
+.st2-loading-text {
+  font-size: 16px;
+}
+

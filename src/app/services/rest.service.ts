@@ -16,16 +16,16 @@ export class RestService {
 
   // Books
   getBooks() {
-    return this.http.get<Book[]>(this.BASE_URL + 'books');
+    return this.http.get<Book[]>(this.BASE_URL + 'books')
       // .pipe(
-      //   delay(350)
+      //   delay(20000)
       // );
   }
 
   addBook(book: Book) {
-    return this.http.post(this.BASE_URL + 'books', book);
+    return this.http.post(this.BASE_URL + 'books', book)
       // .pipe(
-      //   delay(350)
+      //   delay(1000)
       // );
   }
 
@@ -38,9 +38,9 @@ export class RestService {
 
   // Books
   getAuthors() {
-    return this.http.get<Author[]>(this.BASE_URL + 'authors');
+    return this.http.get<Author[]>(this.BASE_URL + 'authors')
       // .pipe(
-      //   delay(350)
+      //   delay(1000)
       // );
   }
 
