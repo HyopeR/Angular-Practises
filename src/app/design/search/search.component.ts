@@ -15,11 +15,13 @@ export class SearchComponent implements OnInit {
   searchText: string = '';
 
   observablePlaceHolder$: Observable<string>;
+  observableSelectedButton$: Observable<string>;
 
   constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
     this.observablePlaceHolder$ = this.store.select(store => store.search.searchText);
+    this.observableSelectedButton$ = this.store.select(store => store.search.searchKey);
   }
 
   changeSearchOption(option) {

@@ -15,12 +15,20 @@
   <div class="col-6 col-md-3 p-0">
 
     <div class="form-group mt-2">
-      <div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
-        <label class="btn btn-sm btn-secondary rounded-0" [ngClass]="searchMode">
-          <input type="radio" (click)="changeSearchOption('book')" autocomplete="off" checked>Book
+      <div class="btn-group btn-group-toggle w-100" data-toggle="buttons" *ngIf="observableSelectedButton$ | async as observableKey">
+        <label class="btn btn-sm btn-secondary rounded-0">
+          <input type="radio"
+                 (click)="changeSearchOption('book')"
+                 autocomplete="off"
+                 [checked]="observableKey === 'book'"
+          >Book
         </label>
         <label class="btn btn-sm btn-secondary rounded-0">
-          <input type="radio" (click)="changeSearchOption('author')" autocomplete="off">Author
+          <input type="radio"
+                 (click)="changeSearchOption('author')"
+                 autocomplete="off"
+                 [checked]="observableKey === 'author'"
+          >Author
         </label>
       </div>
     </div>

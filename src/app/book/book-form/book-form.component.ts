@@ -21,9 +21,10 @@ export class BookFormComponent implements OnInit {
   authors$: Observable<Array<Author>>;
   error$: Observable<Error>;
   loading$: Observable<boolean>;
-  newBook: Book = { id: '', name: '', price: 0, description: '', authorId: ''};
+  newBook: Book = {id: '', name: '', price: 0, description: '', authorId: ''};
 
-  constructor(private store: Store<AppState>) {  }
+  constructor(private store: Store<AppState>) {
+  }
 
   ngOnInit(): void {
     this.authors$ = this.store.select(store => store.authors.list);
@@ -36,7 +37,7 @@ export class BookFormComponent implements OnInit {
     this.newBook.price = parseFloat(String(this.newBook.price));
 
     this.store.dispatch(BookActions.AddBookAction({payload: this.newBook}));
-    this.newBook = { id: '', name: '', price: 0, description: '', authorId: ''};
+    this.newBook = {id: '', name: '', price: 0, description: '', authorId: ''};
   }
 
 }
