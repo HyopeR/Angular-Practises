@@ -29,8 +29,10 @@ export class SearchComponent implements OnInit {
   }
 
   callHistorySearch(oldSearchText) {
-    this.searchText = oldSearchText;
-    this.search();
+    if (this.searchText !== oldSearchText) {
+      this.searchText = oldSearchText;
+      this.search();
+    }
   }
 
   search() {
