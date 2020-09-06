@@ -1,5 +1,5 @@
-import {Book} from '../models/book.model';
-import {Author} from '../models/author.model';
+import {Book} from '../../models/book.model';
+import {Author} from '../../models/author.model';
 import {Action, createReducer, on} from '@ngrx/store';
 import {SearchActions} from '../actions';
 import {BookState} from './book.reducer';

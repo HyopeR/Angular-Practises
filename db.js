@@ -6,6 +6,7 @@ module.exports = function () {
         name: "Life",
         price: 41.50,
         description: 'Life about.',
+        img_url: 'https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9780/2419/9780241984994.jpg',
         authorId: '1da29c90-4934-495d-bc42-112a513dd1b0'
       },
       {
@@ -13,6 +14,7 @@ module.exports = function () {
         name: "Wine",
         price: 65,
         description: 'Wine about.',
+        img_url: 'https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9781/5290/9781529029581.jpg',
         authorId: 'd3e8b614-50e1-4c0f-bfa6-2e8b0f770abc'
       },
       {
@@ -20,6 +22,7 @@ module.exports = function () {
         name: "Freedom",
         price: 45.50,
         description: 'Freedom about.',
+        img_url: 'https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9781/4091/9781409181637.jpg',
         authorId: 'd3e8b614-50e1-4c0f-bfa6-2e8b0f770abc'
       },
       {
@@ -27,6 +30,7 @@ module.exports = function () {
         name: "Achievements",
         price: 38.25,
         description: 'Achievements about.',
+        img_url: 'https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9780/5713/9780571334650.jpg',
         authorId: '63b3c133-1e90-48b1-8b42-d8762d7cef4c'
       },
       {
@@ -34,6 +38,7 @@ module.exports = function () {
         name: "Way",
         price: 20,
         description: 'Way about.',
+        img_url: 'https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9781/8387/9781838770013.jpg',
         authorId: '4bfece44-312d-4060-a8a1-ae1b9dead077'
       },
       {
@@ -41,6 +46,7 @@ module.exports = function () {
         name: "Security",
         price: 11.20,
         description: 'Security about.',
+        img_url: 'https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9781/5098/9781509858637.jpg',
         authorId: '63b3c133-1e90-48b1-8b42-d8762d7cef4c'
       },
       {
@@ -48,6 +54,7 @@ module.exports = function () {
         name: "Language",
         price: 16.90,
         description: 'Language about.',
+        img_url: 'https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9780/0995/9780099511021.jpg',
         authorId: 'd3e8b614-50e1-4c0f-bfa6-2e8b0f780abc'
       },
     ],

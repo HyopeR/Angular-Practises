@@ -11,6 +11,9 @@
   <label class="mt-2">Description: </label>
   <input class="form-control" [(ngModel)]="newBook.description">
 
+  <label class="mt-2">Image Url: </label>
+  <input class="form-control" [(ngModel)]="newBook.img_url">
+
   <label class="mt-2">Author: </label>
   <select *ngIf="authors$ | async as authors"
           class="form-control"

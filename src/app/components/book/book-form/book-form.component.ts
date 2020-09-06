@@ -3,12 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import {Store} from '@ngrx/store';
 import { v4 as uuid } from 'uuid';
 
-import {AppState} from '../../store/reducers';
-import {Book} from '../../store/models/book.model';
+import {AppState} from '../../../store/reducers';
+import {Book} from '../../../models/book.model';
 
 import {Observable} from 'rxjs';
-import {Author} from '../../store/models/author.model';
-import {BookActions} from '../../store/actions';
+import {Author} from '../../../models/author.model';
+import {BookActions} from '../../../store/actions';
 
 @Component({
   // tslint:disable-next-line:component-selector

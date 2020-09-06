@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Store} from '@ngrx/store';
-import {AppState} from '../../store/reducers';
+import {AppState} from '../../../store/reducers';
 
 import {Observable, Subscriber, Subscription} from 'rxjs';
-import {Book} from '../../store/models/book.model';
-import {Author} from '../../store/models/author.model';
-import {getSearchList, stateSearch} from '../../store/selectors/search.selectors';
-import {SearchState} from '../../store/reducers/search.reducer';
-import {SearchActions} from '../../store/actions';
+import {Book} from '../../../models/book.model';
+import {Author} from '../../../models/author.model';
+import {getSearchList, stateSearch} from '../../../store/selectors/search.selectors';
+import {SearchState} from '../../../store/reducers/search.reducer';
+import {SearchActions} from '../../../store/actions';
 
 @Component({
   // tslint:disable-next-line:component-selector

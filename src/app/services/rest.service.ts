@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
-import {Book} from '../store/models/book.model';
-import {Author} from '../store/models/author.model';
+import {Book} from '../models/book.model';
+import {Author} from '../models/author.model';
 import {delay} from 'rxjs/operators';
 
 @Injectable()

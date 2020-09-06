@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import {ModelModule} from '../model/model.module';
+import {ServiceModule} from '../../services/service.module';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
@@ -8,7 +8,7 @@ import {BookComponent} from './book.component';
 import { BookFormComponent } from './book-form/book-form.component';
 import { BookListComponent } from './book-list/book-list.component';
 import { BookDetailComponent } from './book-detail/book-detail.component';
-import {DesignModule} from '../design/design.module';
+import {DesignModule} from '../../design/design.module';
 
 
 @NgModule({
@@ -16,7 +16,7 @@ import {DesignModule} from '../design/design.module';
     Export ile BookComponenti dışarı gönderiyoruz.
    */
   imports: [
-    ModelModule,
+    ServiceModule,
     BrowserModule,
     FormsModule,
     RouterModule,

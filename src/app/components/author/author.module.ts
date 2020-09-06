@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import {ModelModule} from '../model/model.module';
+import {ServiceModule} from '../../services/service.module';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
@@ -11,7 +11,7 @@ import {AuthorComponent} from './author.component';
     Export ile AuthorComponenti dışarı gönderiyoruz.
    */
   imports: [
-    ModelModule,
+    ServiceModule,
     BrowserModule,
     FormsModule,
     RouterModule,

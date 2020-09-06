@@ -8,4 +8,4 @@ import {RestService} from './rest.service';
   imports: [HttpClientModule],
   providers: [RestService]
 })
-export class ModelModule {}
+export class ServiceModule {}

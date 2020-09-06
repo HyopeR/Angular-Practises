@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {Observable} from 'rxjs';
 import {isEmpty} from 'lodash';
 import {Store} from '@ngrx/store';
-import {AppState} from '../../store/reducers';
+import {AppState} from '../../../store/reducers';
 
-import {Book} from '../../store/models/book.model';
-import {BookActions} from '../../store/actions';
+import {Book} from '../../../models/book.model';
+import {BookActions} from '../../../store/actions';
 
 @Component({
   // tslint:disable-next-line:component-selector

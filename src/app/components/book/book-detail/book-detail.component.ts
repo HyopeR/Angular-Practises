@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Book} from '../../store/models/book.model';
+import {Book} from '../../../models/book.model';
 import {Store} from '@ngrx/store';
-import {AppState} from '../../store/reducers';
-import {Author} from '../../store/models/author.model';
-import {AuthorActions} from '../../store/actions/index';
+import {AppState} from '../../../store/reducers';
+import {Author} from '../../../models/author.model';
+import {AuthorActions} from '../../../store/actions';
 import {Observable} from 'rxjs';
 
 @Component({

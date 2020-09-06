@@ -1,4 +1,4 @@
-import { Author } from '../models/author.model';
+import { Author } from '../../models/author.model';
 import {createAction, props} from '@ngrx/store';
 
 export enum AuthorActionTypes {

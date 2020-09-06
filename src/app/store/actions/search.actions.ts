@@ -1,6 +1,6 @@
 import {createAction, props} from '@ngrx/store';
-import {Book} from '../models/book.model';
-import {Author} from '../models/author.model';
+import {Book} from '../../models/book.model';
+import {Author} from '../../models/author.model';
 
 export enum SearchActionTypes {
   SEARCH = '[SEARCH] SEARCH Item',

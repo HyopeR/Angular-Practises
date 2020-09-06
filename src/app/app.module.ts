@@ -7,10 +7,10 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 
 import {AppRoutingModule} from './app-routing.module';
-import {ModelModule} from './model/model.module';
+import {ServiceModule} from './services/service.module';
 import {DesignModule} from './design/design.module';
-import {BookModule} from './book/book.module';
-import {AuthorModule} from './author/author.module';
+import {BookModule} from './components/book/book.module';
+import {AuthorModule} from './components/author/author.module';
 
 import {BookEffects} from './store/effects/book.effects';
 import {AuthorEffects} from './store/effects/author.effects';
@@ -18,8 +18,8 @@ import {SearchEffects} from './store/effects/search.effects';
 import {reducers} from './store/reducers';
 
 import { AppComponent } from './app.component';
-import { HomePageComponent } from './pages/home-page/home-page.component';
-import { SearchPageComponent } from './pages/search-page/search-page.component';
+import { HomePageComponent } from './components/pages/home-page/home-page.component';
+import { SearchPageComponent } from './components/pages/search-page/search-page.component';
 
 
 @NgModule({
@@ -31,7 +31,7 @@ import { SearchPageComponent } from './pages/search-page/search-page.component';
   imports: [
     BrowserModule,
     FormsModule,
-    ModelModule,
+    ServiceModule,
     DesignModule,
     BookModule,
     AuthorModule,

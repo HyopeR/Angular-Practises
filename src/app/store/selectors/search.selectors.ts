@@ -1,8 +1,8 @@
 import {createFeatureSelector, createSelector} from '@ngrx/store';
 import {searchFeatureKey, searchList, SearchState} from '../reducers/search.reducer';
 import {AppState} from '../reducers';
-import {Book} from '../models/book.model';
-import {Author} from '../models/author.model';
+import {Book} from '../../models/book.model';
+import {Author} from '../../models/author.model';
 
 export const featureSearch = createFeatureSelector<SearchState>(searchFeatureKey);
 

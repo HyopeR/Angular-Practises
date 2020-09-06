@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { HomePageComponent } from './pages/home-page/home-page.component';
-import {SearchPageComponent} from './pages/search-page/search-page.component';
-import { BookComponent } from './book/book.component';
-import { AuthorComponent } from './author/author.component';
+import { HomePageComponent } from './components/pages/home-page/home-page.component';
+import {SearchPageComponent} from './components/pages/search-page/search-page.component';
+import { BookComponent } from './components/book/book.component';
+import { AuthorComponent } from './components/author/author.component';
 
 const routes: Routes = [
   {path: 'home', component: HomePageComponent},

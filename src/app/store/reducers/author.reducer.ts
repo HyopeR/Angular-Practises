@@ -1,5 +1,5 @@
 import {AuthorActions, BookActions} from '../actions/index';
-import {Author} from '../models/author.model';
+import {Author} from '../../models/author.model';
 import {Action, createReducer, on} from '@ngrx/store';
 
 export const authorFeatureKey = 'authors';
