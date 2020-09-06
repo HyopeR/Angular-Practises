@@ -4,24 +4,18 @@ import {catchError, map, mergeMap} from 'rxjs/operators';
 import {of} from 'rxjs';
 
 import {RestService} from '../../model/rest.service';
-
-import {
-  AuthorActionTypes,
-  GetAuthorsAction,
-  GetAuthorsFailureAction,
-  GetAuthorsSuccessAction
-} from '../actions/author.actions';
+import {AuthorActions} from '../actions/index';
 
 @Injectable()
 export class AuthorEffects {
 
   @Effect() getAuthors = this.actions
     .pipe(
-      ofType<GetAuthorsAction>(AuthorActionTypes.GET_AUTHORS),
+      ofType(AuthorActions.GetAuthorsAction),
       mergeMap(
         () => this.restService.getAuthors().pipe(
-            map(data => new GetAuthorsSuccessAction(data)),
-            catchError(error => of(new GetAuthorsFailureAction(error)))
+            map(data => AuthorActions.GetAuthorsSuccessAction({authors: data})),
+            catchError(error => of(AuthorActions.GetAuthorsFailureAction({errorMsg: error})))
           )
       )
     );

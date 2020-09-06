@@ -22,7 +22,6 @@
     "@angular/router": "~7.2.0",
     "@fortawesome/fontawesome-free": "^5.14.0",
     "@ngrx/effects": "^10.0.0",
-    "@ngrx/entity": "^10.0.0",
     "@ngrx/store": "^10.0.0",
     "@ngrx/store-devtools": "^10.0.0",
     "bootstrap": "^4.5.2",

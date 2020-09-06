@@ -1,3 +1,5 @@
+import { Action } from '@ngrx/store';
+
 import * as fromBook from './book.reducer';
 import * as fromAuthor from './author.reducer';
 import * as fromSearch from './search.reducer';
@@ -10,8 +12,10 @@ export interface AppState {
   search: fromSearch.SearchState;
 }
 
-export const reducers: ActionReducerMap<AppState> = {
-  books: fromBook.BookReducer,
-  authors: fromAuthor.AuthorReducer,
-  search: fromSearch.SearchReducer
+
+export const reducers: ActionReducerMap<AppState, Action> = {
+  [fromBook.bookFeatureKey]: fromBook.BookReducer,
+  // @ts-ignore
+  [fromAuthor.authorFeatureKey]: fromAuthor.AuthorReducer,
+  [fromSearch.searchFeatureKey]: fromSearch.SearchReducer
 };

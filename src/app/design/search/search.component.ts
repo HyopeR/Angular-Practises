@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Store} from '@ngrx/store';
 import {AppState} from '../../store/reducers';
-import {SearchAction} from '../../store/actions/search.actions';
+import {SearchActions} from '../../store/actions';
 import {Observable} from 'rxjs';
 
 @Component({
@@ -27,7 +27,9 @@ export class SearchComponent implements OnInit {
   }
 
   search() {
-    this.searchText !== '' ? this.store.dispatch(new SearchAction(this.searchText, this.searchMode)) : null;
+    this.searchText !== ''
+      ? this.store.dispatch(SearchActions.SearchAction({searchText: this.searchText, searchKey: this.searchMode}))
+      : null;
   }
 
 }

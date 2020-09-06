@@ -3,9 +3,9 @@ import {Observable} from 'rxjs';
 import {isEmpty} from 'lodash';
 import {Store} from '@ngrx/store';
 import {AppState} from '../../store/reducers';
-import {DeleteBookAction, DeselectBookAction, SelectBookAction} from '../../store/actions/book.actions';
 
 import {Book} from '../../store/models/book.model';
+import {BookActions} from '../../store/actions';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -31,15 +31,15 @@ export class BookListComponent implements OnInit {
   }
 
   deleteBook(id) {
-    this.store.dispatch(new DeleteBookAction(id));
+    this.store.dispatch(BookActions.DeleteBookAction({bookId: id}));
   }
 
   clickBook(book: Book) {
     if (this.currentBookId !== book.id) {
-      this.store.dispatch(new SelectBookAction(book.id));
+      this.store.dispatch(BookActions.SelectBookAction({bookId: book.id}));
       this.currentBookId = book.id;
     } else {
-      this.store.dispatch(new DeselectBookAction({}));
+      this.store.dispatch(BookActions.DeselectBookAction());
       this.currentBookId = '';
     }
   }

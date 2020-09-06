@@ -1,5 +1,5 @@
 import { Author } from '../models/author.model';
-import { Action } from '@ngrx/store';
+import {createAction, props} from '@ngrx/store';
 
 export enum AuthorActionTypes {
   GET_AUTHORS = '[AUTHOR] GET Authors',
@@ -9,37 +9,25 @@ export enum AuthorActionTypes {
   SELECTED_AUTHOR = '[AUTHOR] SELECTED Author'
 }
 
-export class GetAuthorsAction implements Action {
-  readonly type = AuthorActionTypes.GET_AUTHORS;
-}
+export const GetAuthorsAction = createAction(
+  AuthorActionTypes.GET_AUTHORS
+);
 
-export class GetAuthorsSuccessAction implements Action {
-  readonly type = AuthorActionTypes.GET_AUTHORS_SUCCESS;
+export const GetAuthorsSuccessAction = createAction(
+  AuthorActionTypes.GET_AUTHORS_SUCCESS,
+  props<{ authors: Array<Author> }>()
+);
 
-  constructor(public payload: Array<Author>) {}
-}
+export const GetAuthorsFailureAction = createAction(
+  AuthorActionTypes.GET_AUTHORS_FAILURE,
+  props<{ errorMsg: Error }>(),
+);
 
-export class GetAuthorsFailureAction implements Action {
-  readonly type = AuthorActionTypes.GET_AUTHORS_FAILURE;
+export const SelectAuthorAction = createAction(
+  AuthorActionTypes.SELECT_AUTHOR,
+  props<{ authorId: string }>()
+);
 
-  constructor(public payload: Error) {}
-}
-
-export class SelectAuthorAction implements Action {
-  readonly type = AuthorActionTypes.SELECT_AUTHOR;
-
-  constructor(public payload: string) {}
-}
-
-export class SelectedAuthorAction implements Action {
-  readonly type = AuthorActionTypes.SELECTED_AUTHOR;
-
-  constructor(public payload: boolean) {}
-}
-
-export type AuthorActions =
-  GetAuthorsAction |
-  GetAuthorsSuccessAction |
-  GetAuthorsFailureAction |
-  SelectAuthorAction |
-  SelectedAuthorAction;
+export const SelectedAuthorAction = createAction(
+  AuthorActionTypes.SELECTED_AUTHOR
+);

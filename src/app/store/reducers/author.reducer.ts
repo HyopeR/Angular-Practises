@@ -1,12 +1,12 @@
-import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
-import {AuthorActions, AuthorActionTypes} from '../actions/author.actions';
+import {AuthorActions, BookActions} from '../actions/index';
 import {Author} from '../models/author.model';
+import {Action, createReducer, on} from '@ngrx/store';
 
 export const authorFeatureKey = 'authors';
 
 export interface AuthorState {
   list: Author[];
-  selectedAuthor: Author;
+  selectedAuthor: Author | object;
   selected: boolean;
   loading: boolean;
   loaded: boolean;
@@ -22,49 +22,37 @@ const initialState: AuthorState = {
   error: undefined
 };
 
-export function AuthorReducer(
-  state: AuthorState = initialState,
-  action: AuthorActions
-) {
-  switch (action.type) {
-    case AuthorActionTypes.GET_AUTHORS:
-      return {
-        ...state,
-        loading: true
-      };
+const Reducer = createReducer(
+  initialState,
+  on(AuthorActions.GetAuthorsAction, (state) => ({
+    loading: true
+  })),
+  on(AuthorActions.GetAuthorsSuccessAction, (state, { authors }) => ({
+    ...state,
+    list: authors,
+    loading: false,
+    loaded: true
+  })),
+  on(AuthorActions.GetAuthorsFailureAction, (state, { errorMsg }) => ({
+    ...state,
+    error: errorMsg,
+    loading: false,
+    loaded: false
+  })),
+  on(AuthorActions.SelectAuthorAction, (state, { authorId }) => ({
+    ...state,
+    // @ts-ignore
+    selectedAuthor: state.list.find(x => x.id === authorId)
+  })),
+  on(AuthorActions.SelectedAuthorAction, (state) => ({
+    ...state,
+    selected: true
+  }))
+);
 
-    case AuthorActionTypes.GET_AUTHORS_SUCCESS:
-
-      return {
-        ...state,
-        list: action.payload,
-        loading: false,
-        loaded: true
-      };
-
-    case AuthorActionTypes.GET_AUTHORS_FAILURE:
-      return {
-        ...state,
-        error: action.payload,
-        loading: false,
-        loaded: false
-      };
-
-    case AuthorActionTypes.SELECT_AUTHOR:
-      return {
-        ...state,
-        selectedAuthor: state.list.find(x => x.id === action.payload)
-      };
-
-    case AuthorActionTypes.SELECTED_AUTHOR:
-      return {
-        ...state,
-        selected: action.payload
-      };
-
-    default:
-      return state;
-  }
+export function AuthorReducer(state: AuthorState | undefined, action: Action) {
+  // console.log(state, action);
+  return Reducer(state, action);
 }
 
 export const authorList = (state: AuthorState) => state.list;

@@ -1,4 +1,4 @@
-import { Action } from '@ngrx/store';
+import {createAction, props} from '@ngrx/store';
 import {Book} from '../models/book.model';
 import {Author} from '../models/author.model';
 
@@ -8,25 +8,17 @@ export enum SearchActionTypes {
   SEARCH_FAILURE = '[SEARCH] SEARCH Item Failure'
 }
 
-export class SearchAction implements Action {
-  readonly type = SearchActionTypes.SEARCH;
+export const SearchAction = createAction(
+  SearchActionTypes.SEARCH,
+  props<{ searchText: string, searchKey: string }>()
+);
 
-  constructor(public searchText: string, public searchKey: string) { }
-}
+export const SearchSuccessAction = createAction(
+  SearchActionTypes.SEARCH_SUCCESS,
+  props<{ payload: Book[] | Author[] | [] }>()
+);
 
-export class SearchSuccessAction implements Action {
-  readonly type = SearchActionTypes.SEARCH_SUCCESS;
-
-  constructor(public payload: Book[] | Author[] | []) { }
-}
-
-export class SearchFailureAction implements Action {
-  readonly type = SearchActionTypes.SEARCH_FAILURE;
-
-  constructor(public payload: Error) { }
-}
-
-export type SearchActions =
-  SearchAction |
-  SearchSuccessAction |
-  SearchFailureAction;
+export const SearchFailureAction = createAction(
+  SearchActionTypes.SEARCH_FAILURE,
+  props<{ errorMsg: Error }>(),
+);

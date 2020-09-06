@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {GetBooksAction} from './store/actions/book.actions';
-import {GetAuthorsAction} from './store/actions/author.actions';
+import {AuthorActions, BookActions} from './store/actions/index';
 import {AppState} from './store/reducers';
 
 @Component({
@@ -20,8 +19,8 @@ export class AppComponent implements OnInit {
   }
 
   loadBaseData() {
-    this.store.dispatch(new GetBooksAction());
-    this.store.dispatch(new GetAuthorsAction());
+    this.store.dispatch(BookActions.GetBooksAction());
+    this.store.dispatch(AuthorActions.GetAuthorsAction());
   }
 
 }

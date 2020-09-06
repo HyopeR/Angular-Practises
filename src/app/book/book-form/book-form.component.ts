@@ -5,10 +5,10 @@ import { v4 as uuid } from 'uuid';
 
 import {AppState} from '../../store/reducers';
 import {Book} from '../../store/models/book.model';
-import {AddBookAction} from '../../store/actions/book.actions';
-import {GetAuthorsAction} from '../../store/actions/author.actions';
+
 import {Observable} from 'rxjs';
 import {Author} from '../../store/models/author.model';
+import {BookActions} from '../../store/actions';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -35,7 +35,7 @@ export class BookFormComponent implements OnInit {
     this.newBook.id = uuid();
     this.newBook.price = parseFloat(String(this.newBook.price));
 
-    this.store.dispatch(new AddBookAction(this.newBook));
+    this.store.dispatch(BookActions.AddBookAction({payload: this.newBook}));
     this.newBook = { id: '', name: '', price: 0, description: '', authorId: ''};
   }
 

@@ -4,80 +4,42 @@ import {catchError, map, mergeMap} from 'rxjs/operators';
 import {of} from 'rxjs';
 
 import {RestService} from '../../model/rest.service';
-
-import {
-  BookActionTypes,
-  AddBookAction,
-  AddBookFailureAction,
-  AddBookSuccessAction,
-  DeleteBookAction,
-  DeleteBookFailureAction,
-  DeleteBookSuccessAction,
-  GetBooksAction,
-  GetBooksFailureAction,
-  GetBooksSuccessAction,
-  SelectBookAction,
-  SelectedBookAction,
-  DeselectBookAction,
-  DeselectedBookAction,
-} from '../actions/book.actions';
+import {BookActions} from '../actions';
 
 @Injectable()
 export class BookEffects {
 
   @Effect() getBooks = this.actions
     .pipe(
-      ofType<GetBooksAction>(BookActionTypes.GET_BOOKS),
+      ofType(BookActions.GetBooksAction),
       mergeMap(
         () => this.restService.getBooks().pipe(
-            map(data => new GetBooksSuccessAction(data)),
-            catchError(error => of(new GetBooksFailureAction(error)))
+            map(data => BookActions.GetBooksSuccessAction({books: data})),
+            catchError(error => of(BookActions.GetBooksFailureAction({errorMsg: error})))
           )
       )
     );
 
   @Effect() addBook = this.actions
     .pipe(
-      ofType<AddBookAction>(BookActionTypes.ADD_BOOK),
+      ofType(BookActions.AddBookAction),
       mergeMap(
         (data) => this.restService.addBook(data.payload)
           .pipe(
-            map(() => new AddBookSuccessAction(data.payload)),
-            catchError(error => of(new AddBookFailureAction(error)))
+            map(() => BookActions.AddBookSuccessAction({payload: data.payload})),
+            catchError(error => of(BookActions.AddBookFailureAction({errorMsg: error})))
           )
       )
     );
 
   @Effect() deleteBook = this.actions
     .pipe(
-      ofType<DeleteBookAction>(BookActionTypes.DELETE_BOOK),
+      ofType(BookActions.DeleteBookAction),
       mergeMap(
-        (data) => this.restService.deleteBook(data.payload)
+        (data) => this.restService.deleteBook(data.bookId)
           .pipe(
-            map(() => new DeleteBookSuccessAction(data.payload)),
-            catchError(error => of(new DeleteBookFailureAction(error)))
-          )
-      )
-    );
-
-  @Effect() selectBook = this.actions
-    .pipe(
-      ofType<SelectBookAction>(BookActionTypes.SELECT_BOOK),
-      mergeMap(
-        (data) => of(data.payload)
-          .pipe(
-            map(() => new SelectedBookAction(true))
-          )
-      )
-    );
-
-  @Effect() deselectBook = this.actions
-    .pipe(
-      ofType<DeselectBookAction>(BookActionTypes.DESELECT_BOOK),
-      mergeMap(
-        (data) => of(data.payload)
-          .pipe(
-            map(() => new DeselectedBookAction(false))
+            map(() => BookActions.DeleteBookSuccessAction({bookId: data.bookId})),
+            catchError(error => of(BookActions.DeleteBookFailureAction({errorMsg: error})))
           )
       )
     );

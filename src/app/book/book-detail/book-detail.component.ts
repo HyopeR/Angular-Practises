@@ -3,7 +3,7 @@ import {Book} from '../../store/models/book.model';
 import {Store} from '@ngrx/store';
 import {AppState} from '../../store/reducers';
 import {Author} from '../../store/models/author.model';
-import {SelectAuthorAction} from '../../store/actions/author.actions';
+import {AuthorActions} from '../../store/actions/index';
 import {Observable} from 'rxjs';
 
 @Component({
@@ -21,7 +21,7 @@ export class BookDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.selectedAuthor$ = this.store.select(store => store.authors.selectedAuthor);
-    this.store.dispatch(new SelectAuthorAction(this.book.authorId));
+    this.store.dispatch(AuthorActions.SelectAuthorAction({authorId: this.book.authorId}));
   }
 
 }

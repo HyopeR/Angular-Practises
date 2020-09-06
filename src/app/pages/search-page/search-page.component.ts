@@ -6,9 +6,9 @@ import {AppState} from '../../store/reducers';
 import {Observable, Subscriber, Subscription} from 'rxjs';
 import {Book} from '../../store/models/book.model';
 import {Author} from '../../store/models/author.model';
-import {SearchAction} from '../../store/actions/search.actions';
 import {getSearchList, stateSearch} from '../../store/selectors/search.selectors';
 import {SearchState} from '../../store/reducers/search.reducer';
+import {SearchActions} from '../../store/actions';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -45,7 +45,9 @@ export class SearchPageComponent implements OnInit {
     this.searchList$ = this.store.select(getSearchList);
 
     this.store.select(store => store.search.loaded).subscribe(loaded => {
-      const controller = !loaded ? this.store.dispatch(new SearchAction(this.searchText, this.searchMode)) : null;
+      const controller = !loaded
+        ? this.store.dispatch(SearchActions.SearchAction({searchText: this.searchText, searchKey: this.searchMode}))
+        : null;
     }).unsubscribe();
   }
 }

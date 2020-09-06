@@ -1,6 +1,8 @@
-import {SearchActions, SearchActionTypes} from '../actions/search.actions';
 import {Book} from '../models/book.model';
 import {Author} from '../models/author.model';
+import {Action, createReducer, on} from '@ngrx/store';
+import {SearchActions} from '../actions';
+import {BookState} from './book.reducer';
 
 export const searchFeatureKey = 'search';
 
@@ -24,46 +26,36 @@ const initialState: SearchState = {
   searchResult: false,
 };
 
-export function SearchReducer(
-  state: SearchState = initialState,
-  action: SearchActions
-) {
-  console.log(action.type);
-  switch (action.type) {
-    case SearchActionTypes.SEARCH:
-      return {
-        ...state,
-        searchText: action.searchText,
-        searchKey: action.searchKey,
-        loading: true,
-        loaded: false
-      };
+const Reducer = createReducer(
+  initialState,
+  on(SearchActions.SearchAction, (state, {searchText, searchKey}) => ({
+    ...state,
+    searchText,
+    searchKey,
+    loading: true,
+    loaded: false
+  })),
+  on(SearchActions.SearchSuccessAction, (state, { payload }) => ({
+    ...state,
+    list: payload,
+    searchResult: payload.length > 0,
+    loading: false,
+    loaded: true
+  })),
+  on(SearchActions.SearchFailureAction, (state, { errorMsg }) => ({
+    ...state,
+    error: errorMsg,
+    searchResult: false,
+    loading: false,
+    loaded: false
+  })),
+);
 
-    case SearchActionTypes.SEARCH_SUCCESS:
-      let controller = action.payload.length > 0;
-      return {
-        ...state,
-        list: action.payload,
-        searchResult: controller,
-        loading: false,
-        loaded: true
-      };
-
-    case SearchActionTypes.SEARCH_FAILURE:
-      return {
-        ...state,
-        error: action.payload,
-        searchResult: false,
-        loading: false,
-        loaded: false
-      };
-
-    default:
-      return state;
-  }
+export function SearchReducer(state: SearchState | undefined, action: Action) {
+  // console.log(state, action);
+  return Reducer(state, action);
 }
 
-export const searchAllState = (state: SearchState) => state;
 export const searchList = (state: SearchState) => state.list;
 
 // export const searchLoading = (state: SearchState) => state.loading;

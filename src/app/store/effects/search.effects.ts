@@ -7,21 +7,22 @@ import {SearchAction, SearchActionTypes, SearchFailureAction, SearchSuccessActio
 import {select, Store} from '@ngrx/store';
 import {AppState} from '../reducers';
 import {searchFunction} from '../selectors/search.selectors';
+import {SearchActions} from '../actions';
 
 @Injectable()
 export class SearchEffects {
 
   @Effect() searchBook = this.actions
     .pipe(
-      ofType<SearchAction>(SearchActionTypes.SEARCH),
+      ofType(SearchActions.SearchAction),
       mergeMap(() => this.store.pipe(
           select(searchFunction()),
           first(),
           map(data => data)
         )
       ),
-      map((data) => new SearchSuccessAction(data)),
-      catchError(error => of(new SearchFailureAction(error)))
+      map((data) => SearchActions.SearchSuccessAction({payload: data})),
+      catchError(error => of(SearchActions.SearchFailureAction({errorMsg: error})))
     );
 
   constructor(
