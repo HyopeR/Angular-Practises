@@ -5,6 +5,8 @@ import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 
 import {AuthorComponent} from './author.component';
+import {AuthorListComponent} from './author-list/author-list.component';
+import { AuthorFormComponent } from './author-form/author-form.component';
 
 @NgModule({
   /*
@@ -22,7 +24,7 @@ import {AuthorComponent} from './author.component';
       },
     ])
   ],
-  declarations: [AuthorComponent],
+  declarations: [AuthorComponent, AuthorListComponent, AuthorFormComponent],
   exports: [AuthorComponent]
 })
 export class AuthorModule {}

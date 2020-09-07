@@ -21,7 +21,6 @@ import { AppComponent } from './app.component';
 import { HomePageComponent } from './components/pages/home-page/home-page.component';
 import { SearchPageComponent } from './components/pages/search-page/search-page.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
