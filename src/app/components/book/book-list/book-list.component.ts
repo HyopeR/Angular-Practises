@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {isEmpty} from 'lodash';
 import {Store} from '@ngrx/store';
@@ -15,7 +15,7 @@ import {BookActions} from '../../../store/actions';
 })
 export class BookListComponent implements OnInit {
 
-  bookItems$: Observable<Array<Book>>;
+  @Input() bookItems$: Observable<Array<Book>>;
   error$: Observable<Error>;
   loading$: Observable<boolean>;
   selectedBook$: Observable<Book>;

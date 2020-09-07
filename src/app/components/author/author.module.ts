@@ -7,6 +7,7 @@ import {RouterModule} from '@angular/router';
 import {AuthorComponent} from './author.component';
 import {AuthorListComponent} from './author-list/author-list.component';
 import { AuthorFormComponent } from './author-form/author-form.component';
+import {BookModule} from '../book/book.module';
 
 @NgModule({
   /*
@@ -16,6 +17,7 @@ import { AuthorFormComponent } from './author-form/author-form.component';
     ServiceModule,
     BrowserModule,
     FormsModule,
+    BookModule,
     RouterModule,
     RouterModule.forRoot([
       {path: 'author', component: AuthorComponent

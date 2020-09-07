@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {Observable} from 'rxjs';
+import {Book} from '../../models/book.model';
+import {Store} from '@ngrx/store';
+import {AppState} from '../../store/reducers';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -8,9 +12,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthorComponent implements OnInit {
 
-  constructor() { }
+  $authorsBooks: Observable<Array<Book>>;
+  constructor(private store: Store<AppState>) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
 }

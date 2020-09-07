@@ -1,11 +1,11 @@
 <div class="row min-vh-100 pt-3 pb-3">
 
-  <div class="col-12 col-md-12">
+  <div class="col-12 col-md-3">
+    <author-list></author-list>
+  </div>
 
-    <p>
-      author works!
-    </p>
-
+  <div class="col-12 col-md-9">
+    <book-list [bookItems$]="$authorsBooks"></book-list>
   </div>
 
 </div>

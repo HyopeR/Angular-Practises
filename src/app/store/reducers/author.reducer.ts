@@ -1,12 +1,14 @@
 import {AuthorActions, BookActions} from '../actions/index';
 import {Author} from '../../models/author.model';
 import {Action, createReducer, on} from '@ngrx/store';
+import {Book} from '../../models/book.model';
 
 export const authorFeatureKey = 'authors';
 
 export interface AuthorState {
   list: Author[];
   selectedAuthor: Author | object;
+  authorsBooks: Book[] | [];
   selected: boolean;
   loading: boolean;
   loaded: boolean;
@@ -16,6 +18,7 @@ export interface AuthorState {
 const initialState: AuthorState = {
   list: [],
   selectedAuthor: {},
+  authorsBooks: [],
   selected: false,
   loading: false,
   loaded: false,
@@ -39,14 +42,18 @@ const Reducer = createReducer(
     loading: false,
     loaded: false
   })),
-  on(AuthorActions.SelectAuthorAction, (state, { authorId }) => ({
+  on(AuthorActions.SelectAuthorAction, AuthorActions.SelectAuthorBooksAction, (state, { authorId }) => ({
     ...state,
     // @ts-ignore
     selectedAuthor: state.list.find(x => x.id === authorId)
   })),
-  on(AuthorActions.SelectedAuthorAction, (state) => ({
+  on(AuthorActions.SelectAuthorBooksActionSuccess, (state, { _authorsBook }) => ({
     ...state,
+    authorsBook: _authorsBook,
     selected: true
+  })),
+  on(AuthorActions.SelectAuthorBooksActionFailure, (state, { errorMsg }) => ({
+    ...state
   }))
 );
 

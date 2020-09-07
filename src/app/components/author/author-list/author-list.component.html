@@ -1,3 +1,5 @@
-<p>
-  author-list works!
-</p>
+<ul class="list-group" *ngIf="(authors$ | async) as authors">
+  <li *ngFor="let author of authors" class="list-group-item" (click)="selectAuthorsBook(author.id)" type="button">
+    {{ author.name }} {{ author.surname }}
+  </li>
+</ul>

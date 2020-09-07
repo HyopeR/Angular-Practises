@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Observable} from 'rxjs';
+import {Book} from '../../models/book.model';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -9,8 +11,6 @@ import { Component, OnInit } from '@angular/core';
 export class BookComponent implements OnInit {
 
   constructor() { }
-
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
 }
