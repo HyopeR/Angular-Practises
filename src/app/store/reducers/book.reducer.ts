@@ -95,5 +95,3 @@ export function BookReducer(state: BookState | undefined, action: Action) {
   // console.log(state, action);
   return Reducer(state, action);
 }
-
-export const bookList = (state: BookState) => state.list;

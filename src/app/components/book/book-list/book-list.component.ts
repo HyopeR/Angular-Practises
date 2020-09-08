@@ -21,10 +21,10 @@ export class BookListComponent implements OnInit {
   selectedBook$: Observable<Book>;
   currentBookId: string = '';
 
-  constructor(private store: Store<AppState>) {  }
+  constructor(private store: Store<AppState>) {
+  }
 
   ngOnInit(): void {
-    this.bookItems$ = this.store.select(store => store.books.list);
     this.error$ = this.store.select(store => store.books.error);
     this.loading$ = this.store.select(store => store.books.loading);
     this.selectedBook$ = this.store.select(store => store.books.selectedBook);

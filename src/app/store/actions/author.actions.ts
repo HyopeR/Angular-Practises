@@ -7,9 +7,7 @@ export enum AuthorActionTypes {
   GET_AUTHORS_SUCCESS = '[AUTHOR] GET Authors Success',
   GET_AUTHORS_FAILURE = '[AUTHOR] GET Authors Failure',
   SELECT_AUTHOR = '[AUTHOR] SELECT Author',
-  SELECT_FILTER_AUTHORS_BOOK = '[AUTHOR] SELECT FILTER Authors Book',
-  SELECT_FILTER_AUTHORS_BOOK_SUCCESS = '[AUTHOR] SELECT FILTER Authors Book Success',
-  SELECT_FILTER_AUTHORS_BOOK_FAILURE = '[AUTHOR] SELECT FILTER Authors Book Failure',
+  DESELECT_AUTHOR = '[AUTHOR] DESELECT Author'
 }
 
 export const GetAuthorsAction = createAction(
@@ -26,23 +24,11 @@ export const GetAuthorsFailureAction = createAction(
   props<{ errorMsg: Error }>(),
 );
 
-// selectType: onlySelect, filterSelect
 export const SelectAuthorAction = createAction(
   AuthorActionTypes.SELECT_AUTHOR,
   props<{ authorId: string }>()
 );
 
-export const SelectAuthorBooksAction = createAction(
-  AuthorActionTypes.SELECT_FILTER_AUTHORS_BOOK,
-  props<{ authorId: string }>()
-);
-
-export const SelectAuthorBooksActionSuccess = createAction(
-  AuthorActionTypes.SELECT_FILTER_AUTHORS_BOOK_SUCCESS,
-  props<{ _authorsBook: Array<Book> }>()
-);
-
-export const SelectAuthorBooksActionFailure = createAction(
-  AuthorActionTypes.SELECT_FILTER_AUTHORS_BOOK_FAILURE,
-  props<{ errorMsg: Error }>()
+export const DeselectAuthorAction = createAction(
+  AuthorActionTypes.DESELECT_AUTHOR
 );

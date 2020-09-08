@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Store} from '@ngrx/store';
+import {AppState} from '../../store/reducers';
 import {Observable} from 'rxjs';
 import {Book} from '../../models/book.model';
 
@@ -10,7 +12,10 @@ import {Book} from '../../models/book.model';
 })
 export class BookComponent implements OnInit {
 
-  constructor() { }
-  ngOnInit() { }
+  bookItems$: Observable<Array<Book>>;
+  constructor(private store: Store<AppState>) { }
+  ngOnInit() {
+    this.bookItems$ = this.store.select(store => store.books.list);
+  }
 
 }

@@ -8,7 +8,6 @@ export const authorFeatureKey = 'authors';
 export interface AuthorState {
   list: Author[];
   selectedAuthor: Author | object;
-  authorsBooks: Book[] | [];
   selected: boolean;
   loading: boolean;
   loaded: boolean;
@@ -18,7 +17,6 @@ export interface AuthorState {
 const initialState: AuthorState = {
   list: [],
   selectedAuthor: {},
-  authorsBooks: [],
   selected: false,
   loading: false,
   loaded: false,
@@ -42,18 +40,17 @@ const Reducer = createReducer(
     loading: false,
     loaded: false
   })),
-  on(AuthorActions.SelectAuthorAction, AuthorActions.SelectAuthorBooksAction, (state, { authorId }) => ({
+  on(AuthorActions.SelectAuthorAction, (state, { authorId }) => ({
     ...state,
     // @ts-ignore
-    selectedAuthor: state.list.find(x => x.id === authorId)
-  })),
-  on(AuthorActions.SelectAuthorBooksActionSuccess, (state, { _authorsBook }) => ({
-    ...state,
-    authorsBook: _authorsBook,
+    selectedAuthor: state.list.find(x => x.id === authorId),
     selected: true
   })),
-  on(AuthorActions.SelectAuthorBooksActionFailure, (state, { errorMsg }) => ({
-    ...state
+  on(AuthorActions.DeselectAuthorAction, (state) => ({
+    ...state,
+    // @ts-ignore
+    selectedAuthor: {},
+    selected: false
   }))
 );
 
@@ -61,6 +58,3 @@ export function AuthorReducer(state: AuthorState | undefined, action: Action) {
   // console.log(state, action);
   return Reducer(state, action);
 }
-
-export const authorList = (state: AuthorState) => state.list;
-

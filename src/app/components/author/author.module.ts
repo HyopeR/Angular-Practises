@@ -5,7 +5,7 @@ import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 
 import {AuthorComponent} from './author.component';
-import {AuthorListComponent} from './author-list/author-list.component';
+import { AuthorListComponent } from './author-list/author-list.component';
 import { AuthorFormComponent } from './author-form/author-form.component';
 import {BookModule} from '../book/book.module';
 

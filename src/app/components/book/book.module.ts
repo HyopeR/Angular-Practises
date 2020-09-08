@@ -29,6 +29,6 @@ import {DesignModule} from '../../design/design.module';
     ])
   ],
   declarations: [BookComponent, BookFormComponent, BookListComponent, BookDetailComponent],
-    exports: [BookComponent, BookListComponent]
+    exports: [BookComponent, BookListComponent, BookDetailComponent]
 })
 export class BookModule {}

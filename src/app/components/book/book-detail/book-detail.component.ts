@@ -5,6 +5,7 @@ import {AppState} from '../../../store/reducers';
 import {Author} from '../../../models/author.model';
 import {AuthorActions} from '../../../store/actions';
 import {Observable} from 'rxjs';
+import {getAuthor} from '../../../store/selectors/author.selectors';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -20,8 +21,7 @@ export class BookDetailComponent implements OnInit {
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.selectedAuthor$ = this.store.select(store => store.authors.selectedAuthor);
-    this.store.dispatch(AuthorActions.SelectAuthorAction({authorId: this.book.authorId}));
+    this.selectedAuthor$ = this.store.select(getAuthor(this.book.authorId));
   }
 
 }

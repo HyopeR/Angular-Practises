@@ -1,5 +1,17 @@
 <ul class="list-group" *ngIf="(authors$ | async) as authors">
-  <li *ngFor="let author of authors" class="list-group-item" (click)="selectAuthorsBook(author.id)" type="button">
+  <li type="button"
+      class="list-group-item"
+      [ngClass]="!(selected$ | async) ? 'bg-info' : null"
+      (click)="deselectAuthor()"
+  >
+    All Authors
+  </li>
+  <li type="button"
+      class="list-group-item"
+      *ngFor="let author of authors"
+      [ngClass]="(selectedAuthor$ | async)?.id === author.id ? 'bg-info' : null"
+      (click)="selectAuthor(author.id)"
+  >
     {{ author.name }} {{ author.surname }}
   </li>
 </ul>

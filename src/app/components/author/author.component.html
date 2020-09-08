@@ -1,11 +1,29 @@
 <div class="row min-vh-100 pt-3 pb-3">
+  <div class="col-12 col-md-4">
 
-  <div class="col-12 col-md-3">
-    <author-list></author-list>
+    <div class="card bg-light">
+      <div class="card-header bg-dark">
+        <h3 class="text-center text-white">Author List</h3>
+      </div>
+
+      <div class="cart-body position-relative min-cart-body p-3">
+        <author-list (authorSelector)="getAuthorBooks()"></author-list>
+      </div>
+    </div>
   </div>
 
-  <div class="col-12 col-md-9">
-    <book-list [bookItems$]="$authorsBooks"></book-list>
-  </div>
+  <div class="col-12 col-md-8">
 
+    <div class="card bg-light">
+      <div class="card-header bg-dark">
+        <h3 *ngIf="controllerSelectAuthor" class="text-center text-white">All Author's Books</h3>
+        <h3 *ngIf="!controllerSelectAuthor" class="text-center text-white">{{ selectedAuthor.name }}'s Books</h3>
+      </div>
+
+      <div class="cart-body position-relative min-cart-body p-3">
+        <book-list *ngIf="bookItems$ | async" [bookItems$]="bookItems$"></book-list>
+      </div>
+    </div>
+
+  </div>
 </div>
