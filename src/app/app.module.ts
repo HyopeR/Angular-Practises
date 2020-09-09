@@ -36,8 +36,8 @@ import { SearchPageComponent } from './components/pages/search-page/search-page.
     AuthorModule,
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([BookEffects, AuthorEffects, SearchEffects]),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     AppRoutingModule,
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]
